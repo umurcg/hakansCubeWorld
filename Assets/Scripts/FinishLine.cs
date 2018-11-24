@@ -27,25 +27,35 @@ public class FinishLine : MonoBehaviour {
         
         if (other.gameObject==player.gameObject)
         {
-            //Enable cameras transmission mode
             cam.transmissionMode = true;
-
-            //Ascent player for transition
-            //Set parent of player as cubewolrd hile cube world is gonna be rotated too
-            //player.transform.SetParent(cubeWorld.transform);
-            StartCoroutine(player.ascentDescent(ascentObject,descentObject));
-
-            //cubeWorld.enabled = false;
-            //StartCoroutine(cubeWorld.lerpRotation(Quaternion.Euler(0, 0, 90), 1f));
-            StartCoroutine(cubeWorld.setSeasonRotation(transform.localRotation.eulerAngles+new Vector3(0,0,90)));
-
-
+            StartCoroutine(player.ascentDescent(ascentObject, descentObject));
+            StartCoroutine(cubeWorld.setSeasonRotation(transform.localRotation.eulerAngles + new Vector3(0, 0, 90)));
 
         }
 
     }
 
 
-    
+    IEnumerator nextSessiong()
+    {
+        //Enable cameras transmission mode
+        cam.transmissionMode = true;
+
+        //Ascent player for transition
+        //Set parent of player as cubewolrd hile cube world is gonna be rotated too
+        //player.transform.SetParent(cubeWorld.transform);
+        StartCoroutine(player.ascentDescent(ascentObject, descentObject));
+        //yield return StartCoroutine(player.Tween(ascentObject, player.ascendSpeed));
+
+        //cubeWorld.enabled = false;
+        StartCoroutine(cubeWorld.lerpRotation(Quaternion.Euler(0, 0, 90), 1f));
+        //yield return StartCoroutine(cubeWorld.setSeasonRotation(transform.localRotation.eulerAngles + new Vector3(0, 0, 90)));
+
+        //yield return StartCoroutine(player.Tween(descentObject, player.descendSpeed));
+
+        yield break;
+    }
+
+
 
 }

@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 1f;
     public GameObject cubeWorld;
     public float jumpSpeed = 5f;
+    public float jumpDuration = 1f;
 
     public float gravity = 9f;
 
@@ -30,9 +31,9 @@ public class PlayerController : MonoBehaviour
         //Apply gravity
         moveDir.y = moveDir.y - gravity;
 
-        if (Input.GetButton("Jump"))
+        if (Input.GetButtonDown("Jump"))
         {
-            moveDir.y = jumpSpeed;
+            StartCoroutine(jump());
         }
 
         //var hor = Input.GetAxis("Horizontal");
@@ -73,48 +74,25 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    IEnumerator jump()
+    {
+        var t = 0f;
+        while (t < jumpDuration)
+        {
+            t += Time.deltaTime * jumpSpeed;
+            charCont.Move(transform.up *Time.deltaTime * jumpSpeed);
+            yield return null; 
+        }
+        yield break;
 
+    }
 
     public IEnumerator ascentDescent(GameObject ascentObj, GameObject descentObj)
     {
         var obj=StartCoroutine(Tween(ascentObj,ascendSpeed));
         yield return obj;
+        yield return new WaitForSeconds(1f);
         StartCoroutine(Tween(descentObj, descendSpeed));
-        yield break;
-    }
-
-
-    public IEnumerator ascent()
-    {
-        this.enabled = false;
-
-        float curHeight = 0;
-        while (curHeight < transmissionHeight)
-        {
-            var delta = ascendSpeed * Time.deltaTime;
-            transform.position += Vector3.up * delta;
-            curHeight += delta;
-            
-            yield return 0;
-        }
-
-        yield break;
-    }
-
-    public IEnumerator descent()
-    {
-        float curHeight = 0;
-        while (curHeight < transmissionHeight)
-        {
-            var delta = descendSpeed * Time.deltaTime;
-            transform.position -= Vector3.up * delta;
-            curHeight += delta;
-
-            yield return 0;
-        }
-
-        this.enabled = true;
-
         yield break;
     }
 
@@ -143,4 +121,43 @@ public class PlayerController : MonoBehaviour
 
 }
 
- 
+
+
+
+
+
+
+
+//public IEnumerator ascent()
+//{
+//    this.enabled = false;
+
+//    float curHeight = 0;
+//    while (curHeight < transmissionHeight)
+//    {
+//        var delta = ascendSpeed * Time.deltaTime;
+//        transform.position += Vector3.up * delta;
+//        curHeight += delta;
+
+//        yield return 0;
+//    }
+
+//    yield break;
+//}
+
+//public IEnumerator descent()
+//{
+//    float curHeight = 0;
+//    while (curHeight < transmissionHeight)
+//    {
+//        var delta = descendSpeed * Time.deltaTime;
+//        transform.position -= Vector3.up * delta;
+//        curHeight += delta;
+
+//        yield return 0;
+//    }
+
+//    this.enabled = true;
+
+//    yield break;
+//}

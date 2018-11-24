@@ -11573,6 +11573,10 @@ Prefab:
       propertyPath: m_Name
       value: Hakan
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 2dd784aaf465f2a4eac0e8e54aaf5ab5, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fe5c1eba45d86d34dbad6581c19dda81, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dd784aaf465f2a4eac0e8e54aaf5ab5, type: 3}
   m_IsPrefabParent: 0
@@ -11593,7 +11597,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 7
   cubeWorld: {fileID: 692425037}
-  jumpSpeed: 5
+  jumpSpeed: 15
+  jumpDuration: 7.5
   gravity: 9
   transmissionHeight: 5
   ascendSpeed: 1
