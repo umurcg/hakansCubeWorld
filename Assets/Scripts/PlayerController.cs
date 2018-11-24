@@ -13,9 +13,12 @@ public class PlayerController : MonoBehaviour
 
     public float gravity = 9f;
 
-    public float transmissionHeight = 10f;
+  
     public float ascendSpeed = 1f;
     public float descendSpeed = 3f;
+
+    public float seasonTransitionSpeed = 1f;
+
     // Use this for initialization
     void Start()
     {
@@ -42,20 +45,12 @@ public class PlayerController : MonoBehaviour
         moveDir += (ver * Vector3.forward*moveSpeed);
 
         charCont.Move(moveDir * Time.deltaTime);
-
-    }
-
-    public void waitForTransmission()
-    {
-        //Disable update call
-        this.enabled = false;
-        StartCoroutine(lerpPos(transform.position + Vector3.up*transmissionHeight,1f));
-    }
-
-    public void finishTransmission() {
         
-        lerpPos(transform.position - Vector3.up * transmissionHeight, 1f,true);
+
+
     }
+
+
 
     public IEnumerator Tween(GameObject aim, float speed)
     {
@@ -97,28 +92,7 @@ public class PlayerController : MonoBehaviour
         yield break;
     }
 
-    IEnumerator lerpPos(Vector3 pos, float lerpSpeed, bool enableAfter=false)
-    {
-        var initalPos = transform.position;
-        var ratio = 0f;
 
-        while (ratio < 1)
-        {
-            ratio += Time.deltaTime * lerpSpeed;
-            var newPos= Vector3.Lerp(initalPos, pos, ratio);
-            transform.position = newPos;
-
-            yield return null;
-        }
-
-        transform.position = pos;
-
-        if (enableAfter)
-            this.enabled = true;
-
-
-        yield break;
-    }
 
 
     //StartCoroutine(lerpRotation(Quaternion.(0, 0, 90), 1f));
@@ -152,38 +126,3 @@ public class PlayerController : MonoBehaviour
 
 
 
-
-
-//public IEnumerator ascent()
-//{
-//    this.enabled = false;
-
-//    float curHeight = 0;
-//    while (curHeight < transmissionHeight)
-//    {
-//        var delta = ascendSpeed * Time.deltaTime;
-//        transform.position += Vector3.up * delta;
-//        curHeight += delta;
-
-//        yield return 0;
-//    }
-
-//    yield break;
-//}
-
-//public IEnumerator descent()
-//{
-//    float curHeight = 0;
-//    while (curHeight < transmissionHeight)
-//    {
-//        var delta = descendSpeed * Time.deltaTime;
-//        transform.position -= Vector3.up * delta;
-//        curHeight += delta;
-
-//        yield return 0;
-//    }
-
-//    this.enabled = true;
-
-//    yield break;
-//}

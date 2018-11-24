@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour {
     public bool transmissionMode = false;
 
     float zOffset;
-    float transmissionLerpDelta = 10f;
+    float transmissionLerpDelta = 0.1f;
 
 
     // Use this for initialization
@@ -29,7 +29,6 @@ public class CameraController : MonoBehaviour {
 
         //Transmission mode
         //Camera will zoom out in this mode 
-        //It will automaticcall close transmission mode after reaching peak
         if (transmissionMode && Mathf.Abs(transitionZoffset - zOffset) > transmissionLerpDelta)
         {
             zOffset = Mathf.Lerp(zOffset, transitionZoffset, Time.deltaTime * zoomOutSpeed);
@@ -39,10 +38,7 @@ public class CameraController : MonoBehaviour {
         {
             zOffset = Mathf.Lerp(zOffset, runningZoffset, Time.deltaTime * zoomInSpeed);
         }
-        else if (transmissionMode)
-        {
-            transmissionMode = false;
-        }
+     
 
         transform.position = player.transform.position + Vector3.forward * zOffset + Vector3.up * yOffset;
         transform.LookAt(player.transform.position);

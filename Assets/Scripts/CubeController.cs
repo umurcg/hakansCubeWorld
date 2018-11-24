@@ -6,12 +6,7 @@ public class CubeController : MonoBehaviour {
 
     public float rotateSpeed = 1f;
     public float seasonTransitionSpeed = 1f;
-    
-	// Use this for initialization
-	void Start () {
-        
 
-    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -23,7 +18,7 @@ public class CubeController : MonoBehaviour {
     {
         this.enabled = false;
         yield return  StartCoroutine(lerpRotation(Quaternion.Euler(seasonDirection), seasonTransitionSpeed));
-        this.enabled = transform;
+        this.enabled = true;
 
         yield break;
     }

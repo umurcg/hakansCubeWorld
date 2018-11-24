@@ -45,20 +45,23 @@ public class FinishLine : MonoBehaviour {
 
         //Ascent player for transition
         //Set parent of player as cubewolrd hile cube world is gonna be rotated too
-        //player.transform.SetParent(cubeWorld.transform);
-        //StartCoroutine(player.ascentDescent(ascentObject, descentObject));
+        
         player.enabled = false;
         yield return StartCoroutine(player.Tween(ascentObject, player.ascendSpeed));
+        
 
         player.transform.SetParent(ascentObject.transform);
 
         cubeWorld.enabled = false;
-        yield return StartCoroutine(cubeWorld.lerpRotation(Quaternion.Euler(0, 0, 90), 1f));
+        StartCoroutine(cubeWorld.lerpRotation(Quaternion.Euler(transform.localRotation.eulerAngles+new Vector3(0, 0, 90)), 1f));
+        yield return StartCoroutine(player.lerpRotation(Quaternion.Euler(0,90,0), 1f));
         cubeWorld.enabled = true;
+   
 
         player.transform.SetParent(null);
 
-        yield return StartCoroutine(cubeWorld.setSeasonRotation(transform.localRotation.eulerAngles + new Vector3(0, 0, 90)));
+        cam.transmissionMode = false;
+        yield return StartCoroutine(player.Tween(descentObject, player.descendSpeed));
         player.enabled = true;
 
         //yield return StartCoroutine(player.Tween(descentObject, player.descendSpeed));
