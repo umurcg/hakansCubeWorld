@@ -89,10 +89,11 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator ascentDescent(GameObject ascentObj, GameObject descentObj)
     {
+        this.enabled = false;
         var obj=StartCoroutine(Tween(ascentObj,ascendSpeed));
         yield return obj;
-        yield return new WaitForSeconds(1f);
-        StartCoroutine(Tween(descentObj, descendSpeed));
+        yield return StartCoroutine(Tween(descentObj, descendSpeed));
+        this.enabled = true;
         yield break;
     }
 
@@ -115,6 +116,31 @@ public class PlayerController : MonoBehaviour
         if (enableAfter)
             this.enabled = true;
 
+
+        yield break;
+    }
+
+
+    //StartCoroutine(lerpRotation(Quaternion.(0, 0, 90), 1f));
+    public IEnumerator lerpRotation(Quaternion aimRot, float lerpSpeed)
+    {
+
+        var initalRot = transform.rotation;
+        var ratio = 0f;
+
+        while (ratio < 1)
+        {
+            ratio += Time.deltaTime * lerpSpeed;
+            var newRot = Quaternion.Slerp(initalRot, aimRot, ratio);
+            transform.rotation = newRot;
+
+            print("lerping");
+            print(newRot);
+
+            yield return null;
+        }
+
+        transform.rotation = aimRot;
 
         yield break;
     }

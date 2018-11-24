@@ -30,15 +30,17 @@ public class CameraController : MonoBehaviour {
         //Transmission mode
         //Camera will zoom out in this mode 
         //It will automaticcall close transmission mode after reaching peak
-        if (transmissionMode && Mathf.Abs(transitionZoffset-zOffset)> transmissionLerpDelta)
-        {         
-            zOffset= Mathf.Lerp(zOffset, transitionZoffset, Time.deltaTime * zoomOutSpeed);
+        if (transmissionMode && Mathf.Abs(transitionZoffset - zOffset) > transmissionLerpDelta)
+        {
+            zOffset = Mathf.Lerp(zOffset, transitionZoffset, Time.deltaTime * zoomOutSpeed);
 
-        }else if(transmissionMode==false && zOffset != runningZoffset)
+        }
+        else if (transmissionMode == false && zOffset != runningZoffset)
         {
             zOffset = Mathf.Lerp(zOffset, runningZoffset, Time.deltaTime * zoomInSpeed);
         }
-        else if(transmissionMode){
+        else if (transmissionMode)
+        {
             transmissionMode = false;
         }
 

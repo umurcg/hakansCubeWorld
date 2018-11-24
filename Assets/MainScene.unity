@@ -5314,7 +5314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 1
-  seasonTransitionSpeed: 1
+  seasonTransitionSpeed: 0.3
 --- !u!23 &692425039
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5722,7 +5722,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 711437532}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.471, y: 0.585, z: 0}
+  m_LocalPosition: {x: 0.486, y: 0.585, z: 0}
   m_LocalScale: {x: 0.014275595, y: 0.2129173, z: 1}
   m_Children:
   - {fileID: 957599361}
@@ -7899,7 +7899,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 957599360}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.6, y: -0.463, z: 0}
+  m_LocalPosition: {x: 5.74, y: -0.232, z: 0}
   m_LocalScale: {x: 0.71243197, y: 0.047766853, z: 0.01017039}
   m_Children: []
   m_Father: {fileID: 711437533}
@@ -7911,7 +7911,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 957599360}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -10781,7 +10781,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1337038900}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.8, y: -0.459, z: 0}
+  m_LocalPosition: {x: 2.2, y: -0.459, z: 0}
   m_LocalScale: {x: 0.76654375, y: 0.051394917, z: 0.010942868}
   m_Children: []
   m_Father: {fileID: 711437533}
@@ -10793,7 +10793,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1337038900}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -11473,7 +11473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1446930146
 Transform:
   m_ObjectHideFlags: 0
@@ -11602,7 +11602,7 @@ MonoBehaviour:
   gravity: 9
   transmissionHeight: 5
   ascendSpeed: 1
-  descendSpeed: 3
+  descendSpeed: 5
 --- !u!143 &1472372773
 CharacterController:
   m_ObjectHideFlags: 0
@@ -15209,7 +15209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1472372771}
-  runningZoffset: -7.5
+  runningZoffset: -25
   transitionZoffset: -50
   zoomOutSpeed: 1.5
   zoomInSpeed: 7
