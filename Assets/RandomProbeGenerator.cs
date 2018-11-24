@@ -28,10 +28,11 @@ public class RandomProbeGenerator : MonoBehaviour {
     public int maxNumberOfProbeInGroup = 5;
 
     public int numberOfGroup = 5;
+    public int maxNumberOfGroup = 30;
 
     public float minDistBetweenGroups = 5f;
 
-    public float randomPosOffset = 1f;
+    public float randomPosOffset = 0f;
 
     // Use this for initialization
     void Start () {
@@ -46,6 +47,11 @@ public class RandomProbeGenerator : MonoBehaviour {
 
     }
 
+    public void increaseNumberOfGroup()
+    {
+        if (numberOfGroup + 1 < maxNumberOfGroup)
+            numberOfGroup += 1;
+    }
     
 	
 	// Update is called once per frame
@@ -87,9 +93,9 @@ public class RandomProbeGenerator : MonoBehaviour {
             GameObject.Destroy(child.gameObject);
         }
 
-        Bounds sesionPlaneBounds = sesionObject.transform.parent.GetComponent<BoxCollider>().bounds;
-        var max = sesionPlaneBounds.max;
-        var min = sesionPlaneBounds.min;
+        //Bounds sesionPlaneBounds = sesionObject.transform.parent.GetComponent<BoxCollider>().bounds;
+        //var max = sesionPlaneBounds.max;
+        //var min = sesionPlaneBounds.min;
         for(int i = 0; i < numberOfGroup; i++)
         {
             var groupCount = Random.Range(minNumberOfProbeInGroup, maxNumberOfProbeInGroup);
@@ -103,14 +109,13 @@ public class RandomProbeGenerator : MonoBehaviour {
                 var objBound = randomObject.GetComponent<Collider>().bounds;
                 var height = objBound.max.y - objBound.min.y;
 
-
                 //Set rotation
                 randomObject.transform.rotation = sesionObject.transform.rotation;
                 //Rotate in y randomly
                 randomObject.transform.localRotation = randomObject.transform.localRotation * Quaternion.Euler(0, Random.Range(0, 360), 0);
  
                 //Set position of random object with setting its height
-                randomObject.transform.position = findRandomPosInBounds(sesionPlaneBounds) + randomObject.transform.up * height / 2;
+                randomObject.transform.position = findRandomPosInBounds(sesionObject.transform.parent.gameObject) + randomObject.transform.up * height / 2;
                 
 
                 randomObject.transform.SetParent(sesionObject.transform);
@@ -120,13 +125,17 @@ public class RandomProbeGenerator : MonoBehaviour {
 
     }
 
-    Vector3 findRandomPosInBounds(Bounds bound)
+    Vector3 findRandomPosInBounds(GameObject spawnParent)
     {
-        
-        var x = Random.Range(bound.max.x-randomPosOffset, bound.min.x+ randomPosOffset);
-        var y = Random.Range(bound.max.y- randomPosOffset, bound.min.y+ randomPosOffset);
-        var z = Random.Range(bound.max.z- randomPosOffset, bound.min.z+ randomPosOffset);
-        return new Vector3(x, y, z);
+        //print(bound);
+
+        //var x = Random.Range(bound.max.x-randomPosOffset, bound.min.x+ randomPosOffset);
+        //var y = Random.Range(bound.max.y- randomPosOffset, bound.min.y+ randomPosOffset);
+        //var z = Random.Range(bound.max.z- randomPosOffset, bound.min.z+ randomPosOffset);
+        var rndPosWithin = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        rndPosWithin = spawnParent.transform.TransformPoint(rndPosWithin * .5f);
+        return rndPosWithin;
+        //return new Vector3(x, y, z);
     }
     
 

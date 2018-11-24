@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 
     CharacterController charCont;
+    Animator anim;
     public float moveSpeed = 1f;
     public GameObject cubeWorld;
     public float jumpSpeed = 5f;
@@ -21,15 +22,13 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         charCont = gameObject.GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
         var moveDir = Vector3.zero;
-
-
 
         if (charCont.isGrounded)
         {
@@ -44,12 +43,14 @@ public class PlayerController : MonoBehaviour
             //var hor = Input.GetAxis("Horizontal");
             var ver = Input.GetAxis("Vertical");
 
-            moveDir += (ver * Vector3.forward*moveSpeed);
+            moveDir += (ver * Vector3.forward * moveSpeed * 1.5f);
+            anim.SetBool("Jump", false);
 
         }
         else
         {
             moveDir.y = moveDir.y - gravity;
+            anim.SetBool("Jump", true);
         }
 
         if (jumpTimer > 0)
@@ -68,6 +69,11 @@ public class PlayerController : MonoBehaviour
         
 
 
+    }
+
+    void OnDisable()
+    {
+        anim.SetBool("Jump", true);
     }
 
 

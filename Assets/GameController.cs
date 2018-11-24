@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
+    public float speedPercStep = 0.1f;
+
+    public CubeController cubeController;
+    public PlayerController playerController;
+
+
     RandomProbeGenerator probeGenerator;
     public GameObject menu;
 
@@ -31,7 +37,7 @@ public class GameController : MonoBehaviour {
     {
         if ((int)currentSesion + 1 == (int)RandomProbeGenerator.sesions.COUNT)
         {
-            levelUp();
+            
             currentSesion = RandomProbeGenerator.sesions.spring;
         }
         else
@@ -42,11 +48,20 @@ public class GameController : MonoBehaviour {
         //Update reverse sesion
         var reverseSesion = ((int)currentSesion >= 2) ? currentSesion - 2 : currentSesion + 2;
         probeGenerator.updateSeasonProbes(reverseSesion);
+
+        levelUp();
     }
     
 
     public void levelUp()
     {
+        cubeController.rotateSpeed *= 1 + speedPercStep;
+        playerController.moveSpeed *= 1 + speedPercStep;
+        probeGenerator.increaseNumberOfGroup();
+    }
 
+    public void lost()
+    {
+        print("lost");
     }
 }
