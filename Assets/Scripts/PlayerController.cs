@@ -10,14 +10,12 @@ public class PlayerController : MonoBehaviour
     public GameObject cubeWorld;
     public float jumpSpeed = 5f;
     public float jumpDuration = 1f;
+    float jumpTimer = 0f;
 
     public float gravity = 9f;
 
-  
     public float ascendSpeed = 1f;
     public float descendSpeed = 3f;
-
-    public float seasonTransitionSpeed = 1f;
 
     // Use this for initialization
     void Start()
@@ -29,20 +27,42 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        var moveDir = transform.forward * moveSpeed;
+        var moveDir = Vector3.zero;
 
-        //Apply gravity
-        moveDir.y = moveDir.y - gravity;
 
-        if (Input.GetButtonDown("Jump"))
+
+        if (charCont.isGrounded)
         {
-            StartCoroutine(jump());
+            moveDir+=transform.forward* moveSpeed;
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                //StartCoroutine(jump());
+                jumpTimer = jumpDuration;
+            }
+
+            //var hor = Input.GetAxis("Horizontal");
+            var ver = Input.GetAxis("Vertical");
+
+            moveDir += (ver * Vector3.forward*moveSpeed);
+
+        }
+        else
+        {
+            moveDir.y = moveDir.y - gravity;
         }
 
-        //var hor = Input.GetAxis("Horizontal");
-        var ver = Input.GetAxis("Vertical");
-
-        moveDir += (ver * Vector3.forward*moveSpeed);
+        if (jumpTimer > 0)
+        {
+            moveDir.y = moveDir.y +jumpSpeed;
+            jumpTimer -=Time.deltaTime;
+        }
+        else
+        {
+            //Apply gravity
+            moveDir.y = moveDir.y - gravity;
+        }
+        
 
         charCont.Move(moveDir * Time.deltaTime);
         
@@ -107,9 +127,6 @@ public class PlayerController : MonoBehaviour
             ratio += Time.deltaTime * lerpSpeed;
             var newRot = Quaternion.Slerp(initalRot, aimRot, ratio);
             transform.rotation = newRot;
-
-            print("lerping");
-            print(newRot);
 
             yield return null;
         }

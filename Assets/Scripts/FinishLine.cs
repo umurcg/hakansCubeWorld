@@ -9,6 +9,7 @@ public class FinishLine : MonoBehaviour {
     public CameraController cam;
     public GameObject ascentObject;
     public GameObject descentObject;
+    public GameController gameController;
 
     
 
@@ -30,6 +31,7 @@ public class FinishLine : MonoBehaviour {
             //cam.transmissionMode = true;
             //StartCoroutine(player.ascentDescent(ascentObject, descentObject));
             //StartCoroutine(cubeWorld.setSeasonRotation(transform.localRotation.eulerAngles + new Vector3(0, 0, 90)));
+            gameController.nextSesion();
             StartCoroutine(nextSessiong());
         }
 
@@ -53,7 +55,9 @@ public class FinishLine : MonoBehaviour {
         player.transform.SetParent(ascentObject.transform);
 
         cubeWorld.enabled = false;
-        StartCoroutine(cubeWorld.lerpRotation(Quaternion.Euler(transform.localRotation.eulerAngles+new Vector3(0, 0, 90)), 1f));
+        var delta = cubeWorld.transform.rotation.eulerAngles.z % 90;
+
+        StartCoroutine(cubeWorld.lerpRotation(Quaternion.Euler(cubeWorld.transform.localRotation.eulerAngles+new Vector3(0, 0, 90-delta)), 1f));
         yield return StartCoroutine(player.lerpRotation(Quaternion.Euler(0,90,0), 1f));
         cubeWorld.enabled = true;
    

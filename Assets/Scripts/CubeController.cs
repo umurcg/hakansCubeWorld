@@ -36,9 +36,6 @@ public class CubeController : MonoBehaviour {
             var newRot = Quaternion.Slerp(initalRot, aimRot, ratio);
             transform.rotation = newRot;
 
-            print("lerping");
-            print(newRot);
-
             yield return null;
         }
 
