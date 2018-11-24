@@ -7,32 +7,36 @@ public class CameraController : MonoBehaviour {
     public GameObject player;
     public float runningZoffset=-5f;
     public float transitionZoffset = -10f;
+    
 
-    float zOffset;
-    public float transitionSpeed = 1f;
+    public float zoomOutSpeed = 1f;
+    public float zoomInSpeed = 3f;
 
     public float yOffset = 5f;
-
     public bool transmissionMode = false;
 
-	// Use this for initialization
-	void Start () {
+    float zOffset;
+    float transmissionLerpDelta = 10f;
+
+
+    // Use this for initialization
+    void Start () {
         zOffset = runningZoffset;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+        //Transmission mode
+        //Camera will zoom out in this mode 
+        //It will automaticcall close transmission mode after reaching peak
+        if (transmissionMode && Mathf.Abs(transitionZoffset-zOffset)> transmissionLerpDelta)
+        {         
+            zOffset= Mathf.Lerp(zOffset, transitionZoffset, Time.deltaTime * zoomOutSpeed);
 
-        //print(transmissionMode);
-        if (transmissionMode && Mathf.Abs(transitionZoffset-zOffset)>0.5f)
-        {
-            print(Mathf.Abs(transitionZoffset - zOffset));
-            print("moving cam");
-            zOffset= Mathf.Lerp(zOffset, transitionZoffset, Time.deltaTime * transitionSpeed);
         }else if(transmissionMode==false && zOffset != runningZoffset)
         {
-            zOffset = Mathf.Lerp(zOffset, runningZoffset, Time.deltaTime * transitionSpeed);
+            zOffset = Mathf.Lerp(zOffset, runningZoffset, Time.deltaTime * zoomInSpeed);
         }
         else if(transmissionMode){
             transmissionMode = false;
@@ -62,6 +66,23 @@ public class CameraController : MonoBehaviour {
         yield break;
     }
 
+    //IEnumerator shakeCamera(float shakeRatio, float shakeDuration, float shakeSpeed)
+    //{
+    //    var t = 0f;
+    //    var right = true;
 
+    //    while (t < shakeDuration)
+    //    {
+    //        if (right)
+    //        {
+    //            var upDir=transform.transform
+    //        }
+
+    //        yield return null;
+    //    }
+
+    //    yield break;
+
+    //}
 
 }

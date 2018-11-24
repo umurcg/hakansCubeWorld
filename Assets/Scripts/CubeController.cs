@@ -5,12 +5,13 @@ using UnityEngine;
 public class CubeController : MonoBehaviour {
 
     public float rotateSpeed = 1f;
-
+    public float seasonTransitionSpeed = 1f;
     
 	// Use this for initialization
 	void Start () {
- 
-	}
+        
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -18,7 +19,16 @@ public class CubeController : MonoBehaviour {
 
 	}
 
-    //StartCoroutine(lerpRotation(Quaternion.Euler(0, 0, 90), 1f));
+    public IEnumerator setSeasonRotation(Vector3 seasonDirection)
+    {
+        this.enabled = false;
+        yield return  StartCoroutine(lerpRotation(Quaternion.Euler(seasonDirection), seasonTransitionSpeed));
+        this.enabled = transform;
+
+        yield break;
+    }
+
+    //StartCoroutine(lerpRotation(Quaternion.(0, 0, 90), 1f));
     public IEnumerator lerpRotation(Quaternion aimRot, float lerpSpeed)
     {
 

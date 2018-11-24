@@ -7,6 +7,10 @@ public class FinishLine : MonoBehaviour {
     public CubeController cubeWorld;
     public PlayerController player;
     public CameraController cam;
+    public GameObject ascentObject;
+    public GameObject descentObject;
+
+    
 
 	// Use this for initialization
 	void Start () {
@@ -23,12 +27,19 @@ public class FinishLine : MonoBehaviour {
         
         if (other.gameObject==player.gameObject)
         {
+            //Enable cameras transmission mode
             cam.transmissionMode = true;
-            cubeWorld.enabled = false;
-            StartCoroutine(cubeWorld.lerpRotation(Quaternion.Euler(0, 0, 90), 1f));
-            //player.waitForTransmission();
 
-            player.transform.SetParent(cubeWorld.transform);
+            //Ascent player for transition
+            //Set parent of player as cubewolrd hile cube world is gonna be rotated too
+            //player.transform.SetParent(cubeWorld.transform);
+            StartCoroutine(player.ascentDescent(ascentObject,descentObject));
+
+            //cubeWorld.enabled = false;
+            //StartCoroutine(cubeWorld.lerpRotation(Quaternion.Euler(0, 0, 90), 1f));
+            StartCoroutine(cubeWorld.setSeasonRotation(transform.localRotation.eulerAngles+new Vector3(0,0,90)));
+
+
 
         }
 
