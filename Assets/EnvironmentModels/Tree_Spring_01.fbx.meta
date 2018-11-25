@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: a4541ae14a76bb940b3ce2a48f5cd529
-timeCreated: 1543088839
+guid: 6484dc78f981d774c8652c94c13ff9d0
+timeCreated: 1543103700
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    4300000: Mesh5 Group1 Model
-    9500000: //RootNode
-    13700000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Mesh4 Group1 Model.004
   materials:
     importMaterials: 1
     materialName: 0
@@ -79,7 +79,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

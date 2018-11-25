@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 65467205105334232}
   m_Layer: 0
   m_Name: Spring_Tree1
-  m_TagString: Untagged
+  m_TagString: Obstaciles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

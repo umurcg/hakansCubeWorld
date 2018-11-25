@@ -99,7 +99,12 @@ public class RandomProbeGenerator : MonoBehaviour {
         for(int i = 0; i < numberOfGroup; i++)
         {
             var groupCount = Random.Range(minNumberOfProbeInGroup, maxNumberOfProbeInGroup);
-            for(int c = 0; c < groupCount; c++)
+            GameObject[] groupObjects=new GameObject[groupCount];
+
+            //Find group center origin
+            var origin = findRandomPosInBounds(sesionObject.transform.parent.gameObject);
+            
+            for (int c = 0; c < groupCount; c++)
             {
                 var randomObjectPrefab = sesionProbes[Random.Range(0, sesionProbes.Length)];
                 var randomObject=Instantiate<GameObject>(randomObjectPrefab);
@@ -113,15 +118,37 @@ public class RandomProbeGenerator : MonoBehaviour {
                 randomObject.transform.rotation = sesionObject.transform.rotation;
                 //Rotate in y randomly
                 randomObject.transform.localRotation = randomObject.transform.localRotation * Quaternion.Euler(0, Random.Range(0, 360), 0);
- 
+
                 //Set position of random object with setting its height
                 randomObject.transform.position = findRandomPosInBounds(sesionObject.transform.parent.gameObject) + randomObject.transform.up * height / 2;
-                
 
                 randomObject.transform.SetParent(sesionObject.transform);
 
+                groupObjects[c] = randomObject;
             }
+
+
+            //fitObjectsToSmallestCircle(groupObjects, origin, sesionObject.transform.up);
         }
+
+    }
+
+    void fitObjectsToSmallestCircle(GameObject[] objects, Vector3 origin, Vector3 up)
+    {
+        Dictionary<GameObject, float> objToRadius = new Dictionary<GameObject, float>();
+
+        var totalRadius = 0f;
+        foreach(var obj in objects)
+        {
+            var sp=obj.AddComponent<SphereCollider>();
+            var radius = sp.radius;
+
+            totalRadius += radius;
+            objToRadius[obj] = radius;               
+            
+        }
+
+        
 
     }
 

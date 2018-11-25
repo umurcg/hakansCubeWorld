@@ -44,6 +44,8 @@ public class FinishLine : MonoBehaviour {
         this.enabled = false;
         //Enable cameras transmission mode
         cam.transmissionMode = true;
+        //StartCoroutine(cam.lerpToFarCenter());
+
 
         //Ascent player for transition
         //Set parent of player as cubewolrd hile cube world is gonna be rotated too
@@ -65,11 +67,11 @@ public class FinishLine : MonoBehaviour {
         player.transform.SetParent(null);
 
         cam.transmissionMode = false;
+        //StartCoroutine(cam.lerpToPalyer());
         yield return StartCoroutine(player.Tween(descentObject, player.descendSpeed));
         player.enabled = true;
 
-        //yield return StartCoroutine(player.Tween(descentObject, player.descendSpeed));
-
+      
         yield break;
     }
 
