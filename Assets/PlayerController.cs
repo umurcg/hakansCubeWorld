@@ -30,21 +30,25 @@ public class PlayerController : MonoBehaviour
     {
         var moveDir = Vector3.zero;
 
-        if (charCont.isGrounded)
+        if (charCont.isGrounded || jumpTimer>0) 
         {
             moveDir+=transform.forward* moveSpeed;
 
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump") && jumpTimer<=0)
             {
                 //StartCoroutine(jump());
                 jumpTimer = jumpDuration;
             }
 
             //var hor = Input.GetAxis("Horizontal");
+            
             var ver = Input.GetAxis("Vertical");
 
-            moveDir += (ver * Vector3.forward * moveSpeed * 1.5f);
-            anim.SetBool("Jump", false);
+            if (jumpTimer <= 0)
+                moveDir += (ver * Vector3.forward * moveSpeed * 1.5f);
+
+            if (jumpTimer <= 0)
+                anim.SetBool("Jump", false);
 
         }
         else
@@ -52,6 +56,7 @@ public class PlayerController : MonoBehaviour
             moveDir.y = moveDir.y - gravity;
             anim.SetBool("Jump", true);
         }
+
 
         if (jumpTimer > 0)
         {

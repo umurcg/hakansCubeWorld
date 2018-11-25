@@ -15,6 +15,7 @@ public class CubeController : MonoBehaviour {
     //StartCoroutine(lerpRotation(Quaternion.(0, 0, 90), 1f));
     public IEnumerator lerpRotation(Quaternion aimRot, float lerpSpeed)
     {
+        //var counter = 0f;
 
         var initalRot = transform.rotation;
         var ratio = 0f;
@@ -25,8 +26,12 @@ public class CubeController : MonoBehaviour {
             var newRot = Quaternion.Slerp(initalRot, aimRot, ratio);
             transform.rotation = newRot;
 
+            //counter += Time.deltaTime;
+
             yield return null;
         }
+
+        //print(counter);
 
         transform.rotation = aimRot;
 

@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour {
 
+    public GameObject restartButton;
+    public GameObject continueButton;
+
+    public void restart() {
+        SceneManager.LoadScene(0);
+    }
 
     public void mainMenu()
     {

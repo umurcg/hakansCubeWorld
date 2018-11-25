@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour {
 
 
     RandomProbeGenerator probeGenerator;
-    public GameObject menu;
+    public MenuController menu;
 
     public int level = 1;
     public RandomProbeGenerator.sesions currentSesion = RandomProbeGenerator.sesions.spring;
@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            menu.SetActive(true);
+            menu.gameObject.SetActive(true);
             Time.timeScale = 0;
             
         }
@@ -62,6 +62,9 @@ public class GameController : MonoBehaviour {
 
     public void lost()
     {
-        print("lost");
+        menu.gameObject.SetActive(true);
+        menu.restartButton.SetActive(true);
+        menu.continueButton.SetActive(false);
+
     }
 }
