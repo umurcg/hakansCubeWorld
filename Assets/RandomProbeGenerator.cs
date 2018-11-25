@@ -31,8 +31,9 @@ public class RandomProbeGenerator : MonoBehaviour {
     public int maxNumberOfGroup = 30;
 
     public float minDistBetweenGroups = 5f;
+    
 
-    public float randomPosOffset = 0f;
+    public float randomPosOffset = 1f;
 
     // Use this for initialization
     void Start () {
@@ -152,19 +153,34 @@ public class RandomProbeGenerator : MonoBehaviour {
 
     }
 
-    Vector3 findRandomPosInBounds(GameObject spawnParent)
+    public GameObject getSessionObject(sesions session)
     {
-        //print(bound);
+        switch (session)
+        {
+            case (sesions.summer):
+                return summer;                              
+            case (sesions.winter):
+                return winter;                               
+            case (sesions.fall):
+                return fall;                           
+            case (sesions.spring):
+                return spring;                                
+            default:
+                return null;
+                break;
+        }
+    }
 
-        //var x = Random.Range(bound.max.x-randomPosOffset, bound.min.x+ randomPosOffset);
-        //var y = Random.Range(bound.max.y- randomPosOffset, bound.min.y+ randomPosOffset);
-        //var z = Random.Range(bound.max.z- randomPosOffset, bound.min.z+ randomPosOffset);
-        var rndPosWithin = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+    public Vector3 findRandomPosInBounds(GameObject spawnParent)
+    {
+                        
+        var rndPosWithin = new Vector3(Random.Range(-1f+randomPosOffset, 1f- randomPosOffset), Random.Range(-1f+ randomPosOffset, 1f- randomPosOffset), Random.Range(-1f+ randomPosOffset, 1f- randomPosOffset));
         rndPosWithin = spawnParent.transform.TransformPoint(rndPosWithin * .5f);
         return rndPosWithin;
-        //return new Vector3(x, y, z);
+        
     }
     
+
 
 
 }

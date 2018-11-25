@@ -13,8 +13,8 @@ public class SlowtimePower : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     public void OnTriggerEnter(Collider other)
     {

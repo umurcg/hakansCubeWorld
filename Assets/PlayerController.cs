@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     public float jumpDuration = 1f;
     float jumpTimer = 0f;
 
+    public AudioClip[] jumpSounds;
+    SoundController soundController;
+
     public float gravity = 9f;
 
     public float ascendSpeed = 1f;
@@ -23,6 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         charCont = gameObject.GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -38,6 +42,8 @@ public class PlayerController : MonoBehaviour
             {
                 //StartCoroutine(jump());
                 jumpTimer = jumpDuration;
+                if (jumpSounds.Length > 0)
+                    GameObject.FindGameObjectWithTag("MainCamera").GetComponent<SoundController>().createSoundEffect(jumpSounds[Random.Range(0, jumpSounds.Length)]);
             }
 
             //var hor = Input.GetAxis("Horizontal");
@@ -92,6 +98,23 @@ public class PlayerController : MonoBehaviour
         {
             ratio += Time.deltaTime * speed;
             transform.position = Vector3.Lerp(initialPosition, aim.transform.position, ratio);
+            yield return 0;
+
+        }
+        //transform.position = aim.transform.position;
+        yield break;
+    }
+
+
+    public IEnumerator lerpPos(Vector3 aim, float speed)
+    {
+
+        Vector3 initialPosition = transform.position;
+        float ratio = 0;
+        while (ratio < 1)
+        {
+            ratio += Time.deltaTime * speed;
+            transform.position = Vector3.Lerp(initialPosition, aim, ratio);
             yield return 0;
 
         }

@@ -6,11 +6,20 @@ public class GameController : MonoBehaviour {
 
     public float speedPercStep = 0.1f;
 
+    public float minCubeSpeed = 2;
+    public float minHakanSpeed = 7.5f;
+
+    public float maxCubeSpeed = 60f;
+    public float maxHakanSpeed = 15f;
+    public int maxLevel = 15;
+
     public CubeController cubeController;
     public PlayerController playerController;
 
+    public SoundController soundController;
 
-    RandomProbeGenerator probeGenerator;
+    public RandomProbeGenerator probeGenerator;
+    public PowerObjectGenerator powerGenerator;
     public MenuController menu;
 
     public int level = 1;
@@ -18,8 +27,9 @@ public class GameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        probeGenerator = GetComponent<RandomProbeGenerator>();	
-	}
+        probeGenerator = GetComponent<RandomProbeGenerator>();
+        powerGenerator = GetComponent<PowerObjectGenerator>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -46,18 +56,32 @@ public class GameController : MonoBehaviour {
         }
 
         //Update reverse sesion
-        var reverseSesion = ((int)currentSesion >= 2) ? currentSesion - 2 : currentSesion + 2;
+        var reverseSesion = geReverseSession();
         probeGenerator.updateSeasonProbes(reverseSesion);
 
+        soundController.changeMusic();
         levelUp();
     }
     
 
     public void levelUp()
     {
-        cubeController.rotateSpeed *= 1 + speedPercStep;
-        playerController.moveSpeed *= 1 + speedPercStep;
+        level++;
+
+        var speedLevel = Mathf.Clamp(level, 0, maxLevel);              
+
+        var speedRatio = (float)speedLevel / (float)maxLevel;
+        print(speedRatio);
+        cubeController.rotateSpeed = Mathf.Lerp(minCubeSpeed,maxCubeSpeed,speedRatio);
+        playerController.moveSpeed = Mathf.Lerp(minHakanSpeed, maxHakanSpeed, speedRatio);
+
+        //cubeController.rotateSpeed *= cubeController.rotateSpeed * (1 + speedPercStep);
+        //playerController.moveSpeed *= playerController.moveSpeed * (1 + speedPercStep);
+
         probeGenerator.increaseNumberOfGroup();
+        powerGenerator.spawnPowerDowns();
+        powerGenerator.spawnPowerUp();
+        powerGenerator.spawnWind();
     }
 
     public void lost()
@@ -67,4 +91,11 @@ public class GameController : MonoBehaviour {
         menu.continueButton.SetActive(false);
 
     }
+
+    public RandomProbeGenerator.sesions geReverseSession()
+    {
+        var reverseSesion = ((int)currentSesion >= 2) ? currentSesion - 2 : currentSesion + 2;
+        return reverseSesion;
+    }
+    
 }

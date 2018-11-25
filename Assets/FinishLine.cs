@@ -51,7 +51,9 @@ public class FinishLine : MonoBehaviour {
         //Set parent of player as cubewolrd hile cube world is gonna be rotated too
         
         player.enabled = false;
-        yield return StartCoroutine(player.Tween(ascentObject, player.ascendSpeed));
+        //yield return StartCoroutine(player.Tween(ascentObject, player.ascendSpeed));
+        yield return StartCoroutine(player.lerpPos(new Vector3(ascentObject.transform.position.x,ascentObject.transform.position.y,player.transform.position.z), player.ascendSpeed));
+
         
 
         player.transform.SetParent(ascentObject.transform);
@@ -68,7 +70,8 @@ public class FinishLine : MonoBehaviour {
 
         cam.transmissionMode = false;
         //StartCoroutine(cam.lerpToPalyer());
-        yield return StartCoroutine(player.Tween(descentObject, player.descendSpeed));
+        //yield return StartCoroutine(player.Tween(descentObject, player.descendSpeed));
+        yield return StartCoroutine(player.lerpPos(new Vector3(descentObject.transform.position.x, descentObject.transform.position.y, player.transform.position.z), player.ascendSpeed));
         player.enabled = true;
 
       

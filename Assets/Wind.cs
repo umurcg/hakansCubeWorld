@@ -11,7 +11,9 @@ public class Wind : MonoBehaviour {
     public GameObject player;
 	// Use this for initialization
 	void Start () {
+        player = GameObject.FindGameObjectWithTag("Player");
         ray = new Ray(transform.position, transform.forward);
+
 	}
 	
 	// Update is called once per frame

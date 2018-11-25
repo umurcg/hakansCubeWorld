@@ -16,6 +16,7 @@ public class SlowerPowerDown : MonoBehaviour {
     // Use this for initialization
     void Start () {
         parent = transform.parent.gameObject;
+        player = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	// Update is called once per frame
@@ -32,13 +33,13 @@ public class SlowerPowerDown : MonoBehaviour {
             
         }
 
-        transform.parent = null;
-        transform.Rotate(Vector3.right, Time.deltaTime * rollSpeed);
+        //transform.parent = null;
+        //transform.Rotate(Vector3.right, Time.deltaTime * rollSpeed);
         //Debug.Break();
-        transform.parent = (parent.transform);
+        //transform.parent = (parent.transform);
         //transform.localRotation *= Quaternion.Euler(0, 0, Time.deltaTime * rollSpeed);
         //transform.rotation *= Quaternion.Euler(0, 0, Time.deltaTime * rollSpeed);
-        //transform.position += transform.forward * rollSpeed;
+        transform.position += transform.forward * rollSpeed;
     }
 
     private void OnTriggerEnter(Collider other)
