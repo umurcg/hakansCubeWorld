@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 78917aef85125dd479bf007f863be2ef
+timeCreated: 1543145460
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: AunchantedXspace
+  fontNames:
+  - AunchantedXspace
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

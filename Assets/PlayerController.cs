@@ -115,6 +115,7 @@ public class PlayerController : MonoBehaviour
         {
             ratio += Time.deltaTime * speed;
             transform.position = Vector3.Lerp(initialPosition, aim, ratio);
+            
             yield return 0;
 
         }
@@ -130,6 +131,7 @@ public class PlayerController : MonoBehaviour
         {
             t += Time.deltaTime * jumpSpeed;
             charCont.Move(transform.up *Time.deltaTime * jumpSpeed);
+            
             yield return null; 
         }
         yield break;
@@ -143,6 +145,7 @@ public class PlayerController : MonoBehaviour
         yield return obj;
         yield return StartCoroutine(Tween(descentObj, descendSpeed));
         this.enabled = true;
+
         yield break;
     }
 
@@ -161,7 +164,7 @@ public class PlayerController : MonoBehaviour
             ratio += Time.deltaTime * lerpSpeed;
             var newRot = Quaternion.Slerp(initalRot, aimRot, ratio);
             transform.rotation = newRot;
-
+         
             yield return null;
         }
 

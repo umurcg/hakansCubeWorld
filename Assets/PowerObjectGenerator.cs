@@ -54,7 +54,7 @@ public class PowerObjectGenerator : MonoBehaviour {
             spawnedObject.transform.rotation = reverseSesionObject.transform.rotation;
             spawnedObject.transform.position = randomPos;
             spawnedObject.transform.Rotate(spawnedObject.transform.up, UnityEngine.Random.Range(0, 360));
-            spawnedObject.transform.position += spawnedObject.transform.up * 1;
+            spawnedObject.transform.position += spawnedObject.transform.up * 5;
         }
     }
 

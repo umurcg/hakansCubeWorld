@@ -22,6 +22,8 @@ public class GameController : MonoBehaviour {
     public PowerObjectGenerator powerGenerator;
     public MenuController menu;
 
+    public AudioClip gameOverSound;
+
     public int level = 1;
     public RandomProbeGenerator.sesions currentSesion = RandomProbeGenerator.sesions.spring;
 
@@ -69,9 +71,7 @@ public class GameController : MonoBehaviour {
         level++;
 
         var speedLevel = Mathf.Clamp(level, 0, maxLevel);              
-
         var speedRatio = (float)speedLevel / (float)maxLevel;
-        print(speedRatio);
         cubeController.rotateSpeed = Mathf.Lerp(minCubeSpeed,maxCubeSpeed,speedRatio);
         playerController.moveSpeed = Mathf.Lerp(minHakanSpeed, maxHakanSpeed, speedRatio);
 
@@ -89,6 +89,7 @@ public class GameController : MonoBehaviour {
         menu.gameObject.SetActive(true);
         menu.restartButton.SetActive(true);
         menu.continueButton.SetActive(false);
+        soundController.createSoundEffect(gameOverSound);
 
     }
 
