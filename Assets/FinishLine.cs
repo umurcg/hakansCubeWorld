@@ -43,7 +43,8 @@ public class FinishLine : MonoBehaviour {
 
         this.enabled = false;
         //Enable cameras transmission mode
-        cam.transmissionMode = true;
+        if(cam!=null)
+            cam.transmissionMode = true;
         //StartCoroutine(cam.lerpToFarCenter());
 
 
@@ -68,7 +69,8 @@ public class FinishLine : MonoBehaviour {
 
         player.transform.SetParent(null);
 
-        cam.transmissionMode = false;
+        if(cam!=null)
+            cam.transmissionMode = false;
         //StartCoroutine(cam.lerpToPalyer());
         //yield return StartCoroutine(player.Tween(descentObject, player.descendSpeed));
         yield return StartCoroutine(player.lerpPos(new Vector3(descentObject.transform.position.x, descentObject.transform.position.y, player.transform.position.z), player.ascendSpeed));

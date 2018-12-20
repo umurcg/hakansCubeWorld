@@ -9,5 +9,6 @@ EditorBuildSettings:
     path: Assets/Menu.unity
     guid: e972ef7a6ae0dae4aa955f63e0686e0e
   - enabled: 1
-    path: Assets/MainScene.unity
+    path: Assets/RightView.unity
     guid: 3bebe30d7e638fa4ca30145296e0ac14
+  m_configObjects: {}
