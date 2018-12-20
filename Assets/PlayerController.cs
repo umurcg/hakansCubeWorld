@@ -21,12 +21,16 @@ public class PlayerController : MonoBehaviour
     public float ascendSpeed = 1f;
     public float descendSpeed = 3f;
 
+    bool runItSelf = true;
+    public bool switchedControls=false;
+
     // Use this for initialization
     void Start()
     {
         charCont = gameObject.GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
-        
+        anim.SetBool("Walking", true);
+
     }
 
     // Update is called once per frame
@@ -34,11 +38,34 @@ public class PlayerController : MonoBehaviour
     {
         var moveDir = Vector3.zero;
 
-        if (charCont.isGrounded || jumpTimer>0) 
+        if (charCont.isGrounded || jumpTimer > 0)
         {
-            moveDir+=transform.forward* moveSpeed;
+            float ver;
+            float hor;
 
-            if (Input.GetButtonDown("Jump") && jumpTimer<=0)
+            if (switchedControls)
+            {
+                ver = Input.GetAxis("Horizontal")*-1;
+                hor = Input.GetAxis("Vertical");
+            }
+            else
+            {
+                ver = Input.GetAxis("Vertical");
+                hor = Input.GetAxis("Horizontal") * -1;
+            }
+
+            if (runItSelf)
+            {
+                moveDir += transform.forward * moveSpeed;
+            }
+            else
+            {
+                moveDir += transform.forward * moveSpeed * ver;
+            }
+
+            
+
+            if (Input.GetButtonDown("Jump") && jumpTimer <= 0)
             {
                 //StartCoroutine(jump());
                 jumpTimer = jumpDuration;
@@ -47,14 +74,21 @@ public class PlayerController : MonoBehaviour
             }
 
             //var hor = Input.GetAxis("Horizontal");
-            
-            var ver = Input.GetAxis("Vertical");
+
+
 
             if (jumpTimer <= 0)
-                moveDir += (ver * Vector3.forward * moveSpeed * 1.5f);
+                moveDir += (hor * Vector3.forward * moveSpeed * 1.5f);
 
             if (jumpTimer <= 0)
                 anim.SetBool("Jump", false);
+
+            //if (ver != 0 || hor != 0)
+                //anim.SetBool("Walking", true);
+            //else
+            
+                //anim.SetBool("Walking", false);
+            
 
         }
         else
@@ -77,6 +111,7 @@ public class PlayerController : MonoBehaviour
         
 
         charCont.Move(moveDir * Time.deltaTime);
+
         
 
 
