@@ -167,9 +167,14 @@ public class RandomProbeGenerator : MonoBehaviour {
                 return spring;                                
             default:
                 return null;
-                break;
+               
         }
     }
+    public GameObject getSessionCube(sesions sesions)
+    {
+        return getSessionObject(sesions).transform.parent.gameObject;
+    }
+
 
     public Vector3 findRandomPosInBounds(GameObject spawnParent)
     {

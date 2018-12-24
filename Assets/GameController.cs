@@ -47,9 +47,13 @@ public class GameController : MonoBehaviour {
 
     public void nextSesion()
     {
+
+        ////First reset timer of current sesion
+        //if(currentSesion>)
+
+
         if ((int)currentSesion + 1 == (int)RandomProbeGenerator.sesions.COUNT)
-        {
-            
+        {           
             currentSesion = RandomProbeGenerator.sesions.spring;
         }
         else
@@ -97,6 +101,11 @@ public class GameController : MonoBehaviour {
     {
         var reverseSesion = ((int)currentSesion >= 2) ? currentSesion - 2 : currentSesion + 2;
         return reverseSesion;
+    }
+
+    public GameObject getCurrentSesionCube()
+    {
+        return probeGenerator.getSessionCube(currentSesion);
     }
     
 }
