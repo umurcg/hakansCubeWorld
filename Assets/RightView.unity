@@ -393,6 +393,7 @@ MonoBehaviour:
   ascentObject: {fileID: 1657402297}
   descentObject: {fileID: 1803778796}
   gameController: {fileID: 594273921}
+  wallPower: 0
 --- !u!23 &198583266
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -411,7 +412,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 211e21d06747a584e8efc6c903fa72d1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -921,6 +922,7 @@ GameObject:
   - component: {fileID: 594273921}
   - component: {fileID: 594273920}
   - component: {fileID: 594273923}
+  - component: {fileID: 594273924}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1107,6 +1109,25 @@ MonoBehaviour:
   windChance: 0.8
   maxPowerDownPerLevel: 10
   minPowerDownPerLelvel: 5
+--- !u!114 &594273924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594273919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b87acaf5cb7312343a432aadef56565f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallBreakerPrefab: {fileID: 798705315939222619, guid: 28a1bac66879edf4ba55a3174bf8c04e,
+    type: 3}
+  summerWall: {fileID: 198583263}
+  winterWall: {fileID: 1712193752}
+  springWall: {fileID: 711437532}
+  fallWall: {fileID: 2112000645}
+  rpg: {fileID: 594273920}
 --- !u!1 &649670536
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,7 +1666,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 211e21d06747a584e8efc6c903fa72d1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1707,6 +1728,7 @@ MonoBehaviour:
   ascentObject: {fileID: 957599360}
   descentObject: {fileID: 1337038900}
   gameController: {fileID: 594273921}
+  wallPower: 0
 --- !u!1 &723375737
 GameObject:
   m_ObjectHideFlags: 0
@@ -2247,7 +2269,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1033086173
 Transform:
   m_ObjectHideFlags: 0
@@ -3393,7 +3415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1690415139
 Transform:
   m_ObjectHideFlags: 0
@@ -3527,6 +3549,7 @@ MonoBehaviour:
   ascentObject: {fileID: 584907127}
   descentObject: {fileID: 1729783105}
   gameController: {fileID: 594273921}
+  wallPower: 0
 --- !u!23 &1712193755
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3545,7 +3568,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 211e21d06747a584e8efc6c903fa72d1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4561,6 +4584,7 @@ MonoBehaviour:
   ascentObject: {fileID: 1803306994}
   descentObject: {fileID: 783160337}
   gameController: {fileID: 594273921}
+  wallPower: 0
 --- !u!23 &2112000648
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4579,7 +4603,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 211e21d06747a584e8efc6c903fa72d1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4706,6 +4730,11 @@ PrefabInstance:
       propertyPath: cubeWorld
       value: 
       objectReference: {fileID: 692425037}
+    - target: {fileID: 5230945594581226416, guid: 14f6ad29097e9844ca6061243d48c036,
+        type: 3}
+      propertyPath: switchedControls
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14f6ad29097e9844ca6061243d48c036, type: 3}
 --- !u!1 &9171851819946197894 stripped

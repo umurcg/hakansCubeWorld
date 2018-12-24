@@ -31,6 +31,8 @@ public class RandomProbeGenerator : MonoBehaviour {
     public int maxNumberOfGroup = 30;
 
     public float minDistBetweenGroups = 5f;
+
+   
     
 
     public float randomPosOffset = 1f;

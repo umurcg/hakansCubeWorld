@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FinishLine : MonoBehaviour {
@@ -11,11 +10,16 @@ public class FinishLine : MonoBehaviour {
     public GameObject descentObject;
     public GameController gameController;
 
+    MeshRenderer rend;
+    Collider coll;
+
+    public int wallPower = 0;
     
 
-	// Use this for initialization
+	// Use this for initializationri
 	void Start () {
-		
+        rend = GetComponent<MeshRenderer>();
+        coll = GetComponent<Collider>();
 	}
 	
 	// Update is called once per frame
@@ -37,6 +41,35 @@ public class FinishLine : MonoBehaviour {
 
     }
 
+
+    public void breakWall()
+    {
+        rend.enabled =false;
+        coll.isTrigger = true;
+    }
+
+    public void buildWall()
+    {
+
+        if(rend==null)
+            rend = GetComponent<MeshRenderer>();
+
+        if(coll==null)
+            coll = GetComponent<Collider>();
+
+
+        rend.enabled = true;
+        coll.isTrigger =false;
+
+        Debug.Log("Wall build");
+    }
+
+    public void damageWall()
+    {
+        wallPower = -1;
+        if (wallPower <= 0)
+            breakWall();
+    }
 
     IEnumerator nextSessiong()
     {
