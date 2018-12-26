@@ -25,6 +25,8 @@ public class WallBreaker : MonoBehaviour
         {
             finishLine.damageWall();
             Destroy(gameObject);
+            
+            
         }
     }
 }

@@ -22,15 +22,22 @@ public class GameController : MonoBehaviour {
     public PowerObjectGenerator powerGenerator;
     public MenuController menu;
 
+    public WallController wallController;
+
     public AudioClip gameOverSound;
 
     public int level = 1;
     public RandomProbeGenerator.sesions currentSesion = RandomProbeGenerator.sesions.spring;
 
+    public InGameUIController uiController;
+
 	// Use this for initialization
 	void Start () {
         probeGenerator = GetComponent<RandomProbeGenerator>();
         powerGenerator = GetComponent<PowerObjectGenerator>();
+        wallController = GetComponent<WallController>();
+
+        wallController.createWall(currentSesion);
     }
 	
 	// Update is called once per frame
@@ -39,8 +46,7 @@ public class GameController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             menu.gameObject.SetActive(true);
-            Time.timeScale = 0;
-            
+            Time.timeScale = 0;   
         }
 
 	}
@@ -65,6 +71,8 @@ public class GameController : MonoBehaviour {
         var reverseSesion = geReverseSession();
         probeGenerator.updateSeasonProbes(reverseSesion);
 
+        wallController.createWall(currentSesion);
+
         soundController.changeMusic();
         levelUp();
     }
@@ -73,6 +81,8 @@ public class GameController : MonoBehaviour {
     public void levelUp()
     {
         level++;
+
+        uiController.setScore(level-1);
 
         var speedLevel = Mathf.Clamp(level, 0, maxLevel);              
         var speedRatio = (float)speedLevel / (float)maxLevel;
@@ -108,4 +118,18 @@ public class GameController : MonoBehaviour {
         return probeGenerator.getSessionCube(currentSesion);
     }
     
+    public Vector3 getForwardDirection()
+    {
+        var sesionCube = getCurrentSesionCube();
+        var dir= sesionCube.transform.right;
+        return dir;
+    }
+
+    public Vector3 getUpDirection()
+    {
+        var sesionCube = getCurrentSesionCube();
+        var dir = sesionCube.transform.up;
+        return dir;
+    }
+
 }

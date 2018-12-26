@@ -48,7 +48,7 @@ public class FinishLine : MonoBehaviour {
         coll.isTrigger = true;
     }
 
-    public void buildWall()
+    public void buildWall(int numberOfKey)
     {
 
         if(rend==null)
@@ -61,14 +61,16 @@ public class FinishLine : MonoBehaviour {
         rend.enabled = true;
         coll.isTrigger =false;
 
-        Debug.Log("Wall build");
+        gameController.uiController.setKey(numberOfKey);
     }
 
     public void damageWall()
     {
-        wallPower = -1;
+        wallPower-=1;
         if (wallPower <= 0)
             breakWall();
+
+        gameController.uiController.setKey(wallPower);
     }
 
     IEnumerator nextSessiong()
@@ -99,8 +101,7 @@ public class FinishLine : MonoBehaviour {
         yield return StartCoroutine(player.lerpRotation(Quaternion.Euler(0,90,0), 1f));
         cubeWorld.enabled = true;
    
-
-        player.transform.SetParent(null);
+        player.transform.SetParent(cubeWorld.transform);
 
         if(cam!=null)
             cam.transmissionMode = false;

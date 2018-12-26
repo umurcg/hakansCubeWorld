@@ -8,7 +8,8 @@ public class CubeController : MonoBehaviour {
 
     public GameController gameController;
 
-    	
+    public float timerRotateLimit=90;
+    
 	// Update is called once per frame
 	void Update () {
         transform.RotateAround(transform.position, Vector3.forward, rotateSpeed * Time.deltaTime);
@@ -19,7 +20,7 @@ public class CubeController : MonoBehaviour {
 
         //Calculate time left from rotattion
         var angle=Vector3.Angle(currenSesionCube.transform.right, Vector3.right);
-        curretTimer.setTimers((45.0f - angle) / 45);
+        curretTimer.setTimers((timerRotateLimit - angle) / timerRotateLimit);
         
     }
 

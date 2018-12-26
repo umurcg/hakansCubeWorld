@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,12 +13,14 @@ public class WallController : MonoBehaviour
 
     public RandomProbeGenerator rpg;
 
+
+
     public void Start()
     {
-        createWall(RandomProbeGenerator.sesions.winter);
-        createWall(RandomProbeGenerator.sesions.summer);
-        createWall(RandomProbeGenerator.sesions.fall);
-        createWall(RandomProbeGenerator.sesions.spring);
+        //createWall(RandomProbeGenerator.sesions.winter);
+        //createWall(RandomProbeGenerator.sesions.summer);
+        //createWall(RandomProbeGenerator.sesions.fall);
+        //createWall(RandomProbeGenerator.sesions.spring);
     }
 
     public void createWall(RandomProbeGenerator.sesions sesion)
@@ -49,16 +51,17 @@ public class WallController : MonoBehaviour
         
 
         var wallFL = wall.GetComponent<FinishLine>();
-        wallFL.buildWall();
-        wallFL.wallPower = 4;
+        wallFL.buildWall(3);
+        wallFL.wallPower = 3;
 
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 3; i++)
         {
             var pos = rpg.findRandomPosInBounds(sesionObject.transform.parent.gameObject);
             var key = Instantiate<GameObject>(wallBreakerPrefab);
             key.transform.position = pos;
             key.transform.parent = sesionObject.transform;
-            Debug.Log("Instantieted sphere");
+            key.GetComponent<WallBreaker>().finishLine = wallFL;
+            
         }
 
 

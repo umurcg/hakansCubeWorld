@@ -31,7 +31,7 @@ public class SurfaceGrid : MonoBehaviour
       //Test
       for(int i = 0; i < 10; i++)
         {
-            print(findPositionForObjectGroup(3, 2));
+            //print(findPositionForObjectGroup(3, 2));
         }
        
     }
