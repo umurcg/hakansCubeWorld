@@ -1202,10 +1202,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedPercStep: 0.1
-  minCubeSpeed: 4
-  minHakanSpeed: 15
-  maxCubeSpeed: 10
-  maxHakanSpeed: 40
+  minCubeSpeed: 1
+  minHakanSpeed: 10
+  maxCubeSpeed: 5
+  maxHakanSpeed: 30
   maxLevel: 15
   cubeController: {fileID: 692425038}
   playerController: {fileID: 5230945594581226416}
@@ -1489,7 +1489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b088edc12026834781cacdc471f7da2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 2
+  rotateSpeed: 1.5
   gameController: {fileID: 594273921}
   timerRotateLimit: 90
 --- !u!23 &692425039
@@ -2842,7 +2842,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Key Lefts:\t"
+  m_Text: 'Keys Left:'
 --- !u!222 &1212835224
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5403,6 +5403,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelModule
       objectReference: {fileID: 0}
+    - target: {fileID: 2469816952215195157, guid: 5d9cf50b25ec0c1409082ee1cd7c1231,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2469816952215195166, guid: 5d9cf50b25ec0c1409082ee1cd7c1231,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5457,6 +5462,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2469816952215195166, guid: 5d9cf50b25ec0c1409082ee1cd7c1231,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2469816952215195166, guid: 5d9cf50b25ec0c1409082ee1cd7c1231,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2469816952215195160, guid: 5d9cf50b25ec0c1409082ee1cd7c1231,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2469816952215195163, guid: 5d9cf50b25ec0c1409082ee1cd7c1231,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d9cf50b25ec0c1409082ee1cd7c1231, type: 3}
@@ -5593,6 +5618,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171851819946197895, guid: 14f6ad29097e9844ca6061243d48c036,
+        type: 3}
+      propertyPath: m_SlopeLimit
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14f6ad29097e9844ca6061243d48c036, type: 3}
