@@ -9,6 +9,7 @@ public class FinishLine : MonoBehaviour {
     public GameObject ascentObject;
     public GameObject descentObject;
     public GameController gameController;
+    public Collider reverseObstacle;
 
     MeshRenderer rend;
     Collider coll;
@@ -76,6 +77,8 @@ public class FinishLine : MonoBehaviour {
     IEnumerator nextSessiong()
     {
 
+        reverseObstacle.isTrigger = true;
+
         this.enabled = false;
         //Enable cameras transmission mode
         if(cam!=null)
@@ -110,7 +113,8 @@ public class FinishLine : MonoBehaviour {
         yield return StartCoroutine(player.lerpPos(new Vector3(descentObject.transform.position.x, descentObject.transform.position.y, player.transform.position.z), player.ascendSpeed));
         player.enabled = true;
 
-      
+
+        reverseObstacle.isTrigger = false;
         yield break;
     }
 

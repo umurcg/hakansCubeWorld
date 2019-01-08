@@ -10,22 +10,25 @@ public class PlayerController : MonoBehaviour
     SoundController soundController;
 
     public GameController gameController;
-
     public GameObject cubeWorld;
+
     public float moveSpeed = 1f;
+    public float jumpHeight = 2f;
+    public float gravity = -9.81f;
 
-    public float jumpSpeed = 5f;
-    public float jumpDuration = 1f;
+
     public AudioClip[] jumpSounds;
-    float jumpTimer = 0f;
-
-    public float gravity = 9f;
     
     //For rotation mode
     public float ascendSpeed = 1f;
     public float descendSpeed = 3f;
 
-    public bool runnerMode = true;
+    float _jumpVelocity;
+
+    public LayerMask groundLayer;
+    public GameObject groundChecker;
+    public float groundDistance;
+
     
 
     // Use this for initialization
@@ -38,83 +41,67 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var moveDir = Vector3.zero;
+
+        
+
+        var forwardDirection = gameController.getForwardDirection();
+        var upwardDirection = gameController.getUpDirection();
+
+
+        var cubeAngle = gameController.getCubeAngle();
+        if (cubeAngle >gameController.fallAngle)
+        {
+            charCont.Move(gravity * Time.deltaTime*forwardDirection*2);
+            anim.SetBool("Jump", true);
+            return;
+        }
 
         Vector3 walkVector = Vector3.zero;
 
-        //If character is in ground 
-        if (charCont.isGrounded)
-        {
-            float ver;
-            float hor;
+        var moveDir = Vector3.zero;
 
-            ver = Input.GetAxis("Vertical");
-            hor = Input.GetAxis("Horizontal");
+        float ver = Input.GetAxis("Vertical");
+        float hor = Input.GetAxis("Horizontal");
 
+
+        walkVector += forwardDirection * hor + Vector3.forward * ver;
+        walkVector *= moveSpeed;              
             
+        transform.LookAt(transform.position + walkVector, upwardDirection);
 
-            //In runner mode, player avatar will run it self in forward direction
-            if (runnerMode)
-            {
-                walkVector += Vector3.right * moveSpeed;
-                walkVector += Vector3.forward * moveSpeed * ver;
-                
-            }
+        var isGrounded = Physics.CheckSphere(groundChecker.transform.position, groundDistance, groundLayer, QueryTriggerInteraction.Ignore);
+  
 
-            //If not runner mode, player will controller avatar movement freeely
-            else
-            {
-                walkVector += gameController.getForwardDirection() * hor + Vector3.forward * ver;
-                //print(moveDir);
-                //moveDir += Vector3.right *hor+ Vector3.forward * ver;
-                walkVector *= moveSpeed;
-            }
-
-            moveDir += walkVector;
-
-            if (Input.GetButtonDown("Jump") && jumpTimer <= 0)
-            {
-                //StartCoroutine(jump());
-                jumpTimer = jumpDuration;
-                if (jumpSounds.Length > 0)
-                    GameObject.FindGameObjectWithTag("MainCamera").GetComponent<SoundController>().createSoundEffect(jumpSounds[Random.Range(0, jumpSounds.Length)]);
-            }
-
-
-
-            if (jumpTimer <= 0)
-                anim.SetBool("Jump", false);
-
+        //If character is in ground 
+        if (isGrounded)
+        {                    
             if (ver != 0 || hor != 0)
                 anim.SetBool("Walking", true);
             else
                 anim.SetBool("Walking", false);
 
+            anim.SetBool("Jump", false);
 
-        }
-        else
-        {
-            moveDir.y = moveDir.y - gravity;
-            anim.SetBool("Jump", true);
-        }
+            if (_jumpVelocity < 0)
+                _jumpVelocity = 0;
 
-
-        if (jumpTimer > 0)
-        {
-            moveDir.y = moveDir.y +jumpSpeed;
-            jumpTimer -=Time.deltaTime;
+            if (Input.GetButtonDown("Jump"))
+            {
+                _jumpVelocity += Mathf.Sqrt(jumpHeight * -2f * gravity);
+            }
+                        
         }
-        else
-        {
+        else {
+            
             //Apply gravity
-            moveDir.y = moveDir.y - gravity;
+            _jumpVelocity += gravity*Time.deltaTime;
+
+            anim.SetBool("Jump", true);
+            
         }
-        
 
-        charCont.Move(moveDir * Time.deltaTime);
-        transform.LookAt(transform.position + walkVector, gameController.getUpDirection());
-
-
+        var verticalVelocity = (_jumpVelocity + gravity * Time.deltaTime)*upwardDirection;
+        charCont.Move( (verticalVelocity+walkVector) * Time.deltaTime);
 
 
 
@@ -162,19 +149,6 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    IEnumerator jump()
-    {
-        var t = 0f;
-        while (t < jumpDuration)
-        {
-            t += Time.deltaTime * jumpSpeed;
-            charCont.Move(transform.up *Time.deltaTime * jumpSpeed);
-            
-            yield return null; 
-        }
-        yield break;
-
-    }
 
     public IEnumerator ascentDescent(GameObject ascentObj, GameObject descentObj)
     {

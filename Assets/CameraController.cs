@@ -18,14 +18,30 @@ public class CameraController : MonoBehaviour {
     float zOffset;
     float transmissionLerpDelta = 0.1f;
 
+    public float firstUpdateDelay = 1f;
 
     // Use this for initialization
     void Start () {
-        zOffset = runningZoffset;
-	}
+        
+
+        transform.position = player.transform.position + Vector3.forward * transitionZoffset + Vector3.up * yOffset;
+        transform.LookAt(player.transform.position);
+
+        zOffset = transitionZoffset;
+        transmissionMode = false;
+    }
+
+    
 
     // Update is called once per frame
     void Update() {
+
+        if (firstUpdateDelay >= 0)
+        {
+            firstUpdateDelay -= Time.deltaTime;
+            return;
+        }
+
 
         ////Transmission mode
         ////Camera will zoom out in this mode 

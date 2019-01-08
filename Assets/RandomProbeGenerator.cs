@@ -36,6 +36,7 @@ public class RandomProbeGenerator : MonoBehaviour {
     
 
     public float randomPosOffset = 1f;
+    public float randomPosHeight = 3f;
 
     // Use this for initialization
     void Start () {
@@ -182,6 +183,7 @@ public class RandomProbeGenerator : MonoBehaviour {
     {
                         
         var rndPosWithin = new Vector3(Random.Range(-1f+randomPosOffset, 1f- randomPosOffset), Random.Range(-1f+ randomPosOffset, 1f- randomPosOffset), Random.Range(-1f+ randomPosOffset, 1f- randomPosOffset));
+        rndPosWithin.y += randomPosHeight;
         rndPosWithin = spawnParent.transform.TransformPoint(rndPosWithin * .5f);
         return rndPosWithin;
         

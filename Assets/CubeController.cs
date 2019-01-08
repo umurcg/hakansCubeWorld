@@ -8,10 +8,15 @@ public class CubeController : MonoBehaviour {
 
     public GameController gameController;
 
-    public float timerRotateLimit=90;
-    
-	// Update is called once per frame
-	void Update () {
+    float timerRotateLimit=90;
+
+    private void Awake()
+    {
+        timerRotateLimit = gameController.fallAngle;
+    }
+
+    // Update is called once per frame
+    void Update () {
         transform.RotateAround(transform.position, Vector3.forward, rotateSpeed * Time.deltaTime);
 
         //Get session timer for setting timer with rotation left

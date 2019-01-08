@@ -31,8 +31,10 @@ public class GameController : MonoBehaviour {
 
     public InGameUIController uiController;
 
-	// Use this for initialization
-	void Start () {
+    public float fallAngle = 45f;
+
+    // Use this for initialization
+    void Start () {
         probeGenerator = GetComponent<RandomProbeGenerator>();
         powerGenerator = GetComponent<PowerObjectGenerator>();
         wallController = GetComponent<WallController>();
@@ -130,6 +132,14 @@ public class GameController : MonoBehaviour {
         var sesionCube = getCurrentSesionCube();
         var dir = sesionCube.transform.up;
         return dir;
+    }
+
+    public float getCubeAngle()
+    {
+        var forwardVector = getForwardDirection();
+        var angle= Vector3.Angle(forwardVector, Vector3.right);
+        print(angle);
+        return angle;
     }
 
 }
