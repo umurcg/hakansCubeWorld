@@ -11,6 +11,7 @@ public class SlowerPowerDown : MonoBehaviour {
     public bool destroyAfterTrigger = false;
     public float rollSpeed = 1f;
     public GameObject parent;
+    public GameController gameController;
 
 
     // Use this for initialization
@@ -39,7 +40,9 @@ public class SlowerPowerDown : MonoBehaviour {
         //transform.parent = (parent.transform);
         //transform.localRotation *= Quaternion.Euler(0, 0, Time.deltaTime * rollSpeed);
         //transform.rotation *= Quaternion.Euler(0, 0, Time.deltaTime * rollSpeed);
-        transform.position += transform.forward * rollSpeed;
+        
+        if(rollSpeed>0)
+            transform.position += gameController.getForwardDirection() *-1* rollSpeed;
     }
 
     private void OnTriggerEnter(Collider other)

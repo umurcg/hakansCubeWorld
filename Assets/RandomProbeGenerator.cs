@@ -24,6 +24,8 @@ public class RandomProbeGenerator : MonoBehaviour {
     public GameObject spring;
     public GameObject[] springProbes;
 
+    
+
     public int minNumberOfProbeInGroup = 1;
     public int maxNumberOfProbeInGroup = 5;
 
@@ -42,11 +44,11 @@ public class RandomProbeGenerator : MonoBehaviour {
     void Start () {
 
         //At start update all season probes
-        
-        updateSeasonProbes(sesions.summer);
-        updateSeasonProbes(sesions.winter);
-        updateSeasonProbes(sesions.fall);
-        updateSeasonProbes(sesions.spring);
+
+        updateSeasonLevel(sesions.summer);
+        updateSeasonLevel(sesions.winter);
+        updateSeasonLevel(sesions.fall);
+        updateSeasonLevel(sesions.spring);
 
 
     }
@@ -62,6 +64,54 @@ public class RandomProbeGenerator : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void updateSeasonLevel(sesions sesion)
+    {
+        var levelPrefab =Resources.Load<GameObject>("Levels/Level");
+
+        GameObject sesionObject=null;
+        var spawnedLevel= Instantiate<GameObject>(levelPrefab);
+
+        switch (sesion)
+        {
+            case (sesions.summer):
+                sesionObject = summer;
+                
+                break;
+            case (sesions.winter):
+                sesionObject = winter;
+                
+                break;
+            case (sesions.fall):
+                sesionObject = fall;
+                
+                break;
+            case (sesions.spring):
+                sesionObject = spring;
+                
+                break;
+            default:
+                break;
+        }
+
+        //First clear sesionObject children
+        foreach (Transform child in sesionObject.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+
+        spawnedLevel.transform.SetParent(sesionObject.transform);
+        spawnedLevel.transform.localPosition = Vector3.zero;
+        spawnedLevel.transform.localRotation = Quaternion.identity;
+
+        WallBreaker wallBreaker = spawnedLevel.transform.GetComponentInChildren<WallBreaker>();
+        FinishLine finishLine = sesionObject.transform.parent.GetComponentInChildren<FinishLine>();
+        wallBreaker.finishLine = finishLine;
+        finishLine.buildWall(1);
+
+        
+
+    }
 
     public void updateSeasonProbes(sesions sesion)
     {

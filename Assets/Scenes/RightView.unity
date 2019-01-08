@@ -1201,8 +1201,8 @@ MonoBehaviour:
     prefab: {fileID: 1294590543112900, guid: 3938377036a70cf40a996879871da239, type: 3}
   wind: {fileID: 1974270543332274, guid: f8ed3bb11e6f4d341a96b9599b6368cf, type: 3}
   gameController: {fileID: 594273921}
-  powerUpChance: 0.8
-  windChance: 0.8
+  powerUpChance: 0
+  windChance: 1
   maxPowerDownPerLevel: 10
   minPowerDownPerLelvel: 5
 --- !u!114 &594273924
@@ -1807,7 +1807,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 710618560}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb62a8f60d921e94e9d1280da7c360d0, type: 3}
   m_Name: 
@@ -2175,7 +2175,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758924637}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb62a8f60d921e94e9d1280da7c360d0, type: 3}
   m_Name: 
@@ -3586,7 +3586,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399840426}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb62a8f60d921e94e9d1280da7c360d0, type: 3}
   m_Name: 
@@ -3909,7 +3909,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1627905815}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb62a8f60d921e94e9d1280da7c360d0, type: 3}
   m_Name: 

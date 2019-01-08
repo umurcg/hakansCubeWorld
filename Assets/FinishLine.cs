@@ -51,7 +51,7 @@ public class FinishLine : MonoBehaviour {
 
     public void buildWall(int numberOfKey)
     {
-
+        
         if(rend==null)
             rend = GetComponent<MeshRenderer>();
 
@@ -63,6 +63,7 @@ public class FinishLine : MonoBehaviour {
         coll.isTrigger =false;
 
         gameController.uiController.setKey(numberOfKey);
+        wallPower = numberOfKey;
     }
 
     public void damageWall()

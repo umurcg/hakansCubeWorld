@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour {
         powerGenerator = GetComponent<PowerObjectGenerator>();
         wallController = GetComponent<WallController>();
 
-        wallController.createWall(currentSesion);
+        //wallController.createWall(currentSesion);
     }
 	
 	// Update is called once per frame
@@ -71,9 +71,11 @@ public class GameController : MonoBehaviour {
 
         //Update reverse sesion
         var reverseSesion = geReverseSession();
-        probeGenerator.updateSeasonProbes(reverseSesion);
+        probeGenerator.updateSeasonLevel(reverseSesion);
 
-        wallController.createWall(currentSesion);
+        //probeGenerator.updateSeasonProbes(reverseSesion);
+
+        //wallController.createWall(currentSesion);
 
         soundController.changeMusic();
         levelUp();
@@ -96,8 +98,9 @@ public class GameController : MonoBehaviour {
 
         probeGenerator.increaseNumberOfGroup();
         powerGenerator.spawnPowerDowns();
-        powerGenerator.spawnPowerUp();
-        powerGenerator.spawnWind();
+        //powerGenerator.spawnPowerDowns();
+        //powerGenerator.spawnPowerUp();
+        //powerGenerator.spawnWind();
     }
 
     public void lost()
@@ -138,7 +141,6 @@ public class GameController : MonoBehaviour {
     {
         var forwardVector = getForwardDirection();
         var angle= Vector3.Angle(forwardVector, Vector3.right);
-        print(angle);
         return angle;
     }
 

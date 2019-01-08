@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 65766659663541904}
   - component: {fileID: 114890852036370250}
   - component: {fileID: 5285885759054179500}
+  - component: {fileID: 4189755937722275480}
   m_Layer: 0
   m_Name: Dead_Tree_02
   m_TagString: Untagged
@@ -127,3 +128,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4189755937722275480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294590543112900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63845f30c77877c40b0ef230601127e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 100

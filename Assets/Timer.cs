@@ -44,6 +44,8 @@ public class Timer : MonoBehaviour
     public void setTimers(float r)
     {
 
+        return;
+
         upperTimer.transform.SetParent(null);
         downTimer.transform.SetParent(null);
 
