@@ -748,7 +748,7 @@ GameObject:
   - component: {fileID: 1294106878208010894}
   - component: {fileID: 6382928726209310044}
   m_Layer: 0
-  m_Name: LevelSample 1
+  m_Name: Fall3_keremv1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -876,6 +876,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35849b88a8270240b38fc8ed2661561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelNumber: 1
+  session: 2
 --- !u!1 &1423494182598854022
 GameObject:
   m_ObjectHideFlags: 0
