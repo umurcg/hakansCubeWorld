@@ -1,0 +1,5 @@
+sag týkla ---- gýt bashh
+
+git add --all
+git commit -m'comment'
+git push origin hakansLevels

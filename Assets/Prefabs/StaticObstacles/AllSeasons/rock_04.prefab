@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4976175669713044}
   - component: {fileID: 33805134745103788}
   - component: {fileID: 23964820674988538}
-  - component: {fileID: 65549657904058108}
-  - component: {fileID: 3850276890212235344}
-  m_Layer: 0
+  - component: {fileID: 6617683570648987615}
+  - component: {fileID: 424016222214566423}
+  m_Layer: 8
   m_Name: rock_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,9 +27,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1389260823567488}
-  m_LocalRotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.14429495, y: 0.4689879, z: -0.09514551}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 113.32817, y: 113.32817, z: 113.32817}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -79,8 +79,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &65549657904058108
-BoxCollider:
+--- !u!64 &6617683570648987615
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -89,10 +89,11 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.018940378, y: 0.019441301, z: 0.02004421}
-  m_Center: {x: -0.00018176856, y: 0.0050204396, z: -0.00016843923}
---- !u!64 &3850276890212235344
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 160498ac1f6471e439bcf8d0034172fd, type: 3}
+--- !u!64 &424016222214566423
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
