@@ -24,6 +24,8 @@ public class FinishLine : MonoBehaviour {
 	void Start () {
         rend = GetComponent<MeshRenderer>();
         coll = GetComponent<Collider>();
+
+   
 	}
 	
 	// Update is called once per frame
@@ -48,8 +50,11 @@ public class FinishLine : MonoBehaviour {
 
     public void breakWall()
     {
-        rend.enabled =false;
+        //rend.enabled =false;
         coll.isTrigger = true;
+
+        if (doorObject != null)
+            StartCoroutine(_fadeObjectOut(doorObject, 1f, true));
     }
 
     public void buildWall(int numberOfKey)
@@ -62,12 +67,23 @@ public class FinishLine : MonoBehaviour {
             coll = GetComponent<Collider>();
 
 
-        rend.enabled = true;
+        //rend.enabled = true;
         coll.isTrigger =false;
 
         gameController.uiController.setKey(numberOfKey);
         wallPower = numberOfKey;
+
+        if (doorObject != null)
+        {
+            Renderer doorRend = doorObject.GetComponent<Renderer>();
+            StandardShaderUtils.ChangeRenderMode(doorRend.material, StandardShaderUtils.BlendMode.Opaque);
+            Color textureColor = doorRend.material.color;
+            float a = textureColor.a;
+        }
+
     }
+
+    
 
     public void damageWall()
     {
@@ -122,6 +138,111 @@ public class FinishLine : MonoBehaviour {
         yield break;
     }
 
+    
+
+    public static IEnumerator _fadeObjectOut(GameObject obj, float speed, bool fullFade = false)
+    {
+        Renderer rend = obj.GetComponent<Renderer>();
+
+        if (!rend) rend = obj.GetComponentInChildren<Renderer>();
+
+        //Debug.Log(rend.material.name);
+
+        Color textureColor = rend.material.color;
+        float a = textureColor.a;
+
+        //If object is already faded
+        if (a == 0) yield break;
+
+        //It is for changing rendered mode at right time
+        bool willBeTransparent = true;
+        StandardShaderUtils.BlendMode mode = (fullFade) ? StandardShaderUtils.BlendMode.Fade : StandardShaderUtils.BlendMode.Transparent;
+
+        if (willBeTransparent)
+        {
+            StandardShaderUtils.ChangeRenderMode(rend.material, mode);
+        }
 
 
+        if (a == 1)
+        {
+            while (a > 0)
+            {
+                a -= Time.deltaTime * speed;
+                textureColor.a = a;
+                rend.material.color = textureColor;
+                yield return null;
+            }
+            textureColor.a = 0;
+            rend.material.color = textureColor;
+
+        }
+
+
+
+        if (!willBeTransparent)
+        {
+            StandardShaderUtils.ChangeRenderMode(rend.material, StandardShaderUtils.BlendMode.Opaque);
+        }
+
+        yield break;
+    }
+}
+
+
+ 
+ 
+ public static class StandardShaderUtils
+{
+    public enum BlendMode
+    {
+        Opaque,
+        Cutout,
+        Fade,
+        Transparent
+    }
+
+    public static void ChangeRenderMode(Material standardShaderMaterial, BlendMode blendMode)
+    {
+        switch (blendMode)
+        {
+            case BlendMode.Opaque:
+                standardShaderMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
+                standardShaderMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
+                standardShaderMaterial.SetInt("_ZWrite", 1);
+                standardShaderMaterial.DisableKeyword("_ALPHATEST_ON");
+                standardShaderMaterial.DisableKeyword("_ALPHABLEND_ON");
+                standardShaderMaterial.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+                standardShaderMaterial.renderQueue = -1;
+                break;
+            case BlendMode.Cutout:
+                standardShaderMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
+                standardShaderMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
+                standardShaderMaterial.SetInt("_ZWrite", 1);
+                standardShaderMaterial.EnableKeyword("_ALPHATEST_ON");
+                standardShaderMaterial.DisableKeyword("_ALPHABLEND_ON");
+                standardShaderMaterial.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+                standardShaderMaterial.renderQueue = 2450;
+                break;
+            case BlendMode.Fade:
+                standardShaderMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                standardShaderMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                standardShaderMaterial.SetInt("_ZWrite", 0);
+                standardShaderMaterial.DisableKeyword("_ALPHATEST_ON");
+                standardShaderMaterial.EnableKeyword("_ALPHABLEND_ON");
+                standardShaderMaterial.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+                standardShaderMaterial.renderQueue = 3000;
+                break;
+            case BlendMode.Transparent:
+                standardShaderMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
+                standardShaderMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                standardShaderMaterial.SetInt("_ZWrite", 0);
+                standardShaderMaterial.DisableKeyword("_ALPHATEST_ON");
+                standardShaderMaterial.DisableKeyword("_ALPHABLEND_ON");
+                standardShaderMaterial.EnableKeyword("_ALPHAPREMULTIPLY_ON");
+                standardShaderMaterial.renderQueue = 3000;
+                break;
+        }
+
+    }
 }

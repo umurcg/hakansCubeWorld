@@ -22,11 +22,17 @@ public class LeaderBoardController : MonoBehaviour
 
     public GameObject userNameInput;
 
+    public GameObject leaderBoardListObject;
+    public GameObject leaderBoardElementPrefab;
+
     private void Awake()
     {
         if (retrieveLeaderboardData() == false)
-            _userRecors = new List<userRecord>();        
-               
+            _userRecors = new List<userRecord>();
+
+        updateBoardList();
+
+
     }
 
     public void openUserNameInput()
@@ -55,6 +61,26 @@ public class LeaderBoardController : MonoBehaviour
         _userRecors.Add(record);
 
         saveLeaderboardData();
+
+        updateBoardList();
+    }
+
+    public void updateBoardList()
+    {        
+        foreach (Transform child in leaderBoardListObject.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach(var score in _userRecors)
+        {
+            var element = Instantiate<GameObject>(leaderBoardElementPrefab);
+            element.transform.SetParent(leaderBoardListObject.transform);
+
+            var elementText = element.GetComponent<Text>();
+            elementText.text = score.userName + "  ---  " + score.level.ToString();
+
+        }
+
     }
 
     void saveLeaderboardData()
@@ -69,6 +95,8 @@ public class LeaderBoardController : MonoBehaviour
         BinaryFormatter bf = new BinaryFormatter();
         bf.Serialize(file, _userRecors);
         file.Close();
+
+        
 
     }
 
