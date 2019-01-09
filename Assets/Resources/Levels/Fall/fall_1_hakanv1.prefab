@@ -2472,8 +2472,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35849b88a8270240b38fc8ed2661561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelNumber: 0
-  session: 0
+  levelNumber: 1
+  session: 2
 --- !u!1 &6720363470389168716
 GameObject:
   m_ObjectHideFlags: 0

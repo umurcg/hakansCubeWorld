@@ -34,21 +34,45 @@ public class RandomProbeGenerator : MonoBehaviour {
 
     public float minDistBetweenGroups = 5f;
 
+    Dictionary<sesions, Dictionary<int, GameObject>> loadedLevels;
    
     
 
     public float randomPosOffset = 1f;
     public float randomPosHeight = 3f;
 
+    private void Awake()
+    {
+        loadedLevels = new Dictionary<sesions, Dictionary<int, GameObject>>();
+
+        //Open dict for each sesion
+        for(var i = 0; i <(int) sesions.COUNT; i++)
+        {
+            loadedLevels[(sesions)(i)] = new Dictionary<int, GameObject>();
+        }
+
+        var allLevels = Resources.LoadAll<GameObject>("Levels");
+        print(allLevels.Length);
+        foreach (var level in allLevels)
+        {
+            print("hey");
+            LevelSurface levelSurf = level.GetComponent<LevelSurface>();                        
+            loadedLevels[levelSurf.session][levelSurf.levelNumber] = level;
+            print(levelSurf.session);
+            print(levelSurf.levelNumber);
+        }
+        
+    }
+
     // Use this for initialization
-    void Start () {
+    void Start() {
 
-        //At start update all season probes
 
-        updateSeasonLevel(sesions.summer);
-        updateSeasonLevel(sesions.winter);
-        updateSeasonLevel(sesions.fall);
-        updateSeasonLevel(sesions.spring);
+
+        updateSeasonLevel(sesions.summer,1);
+        updateSeasonLevel(sesions.winter,1);
+        updateSeasonLevel(sesions.fall,1);
+        updateSeasonLevel(sesions.spring,1);
 
 
     }
@@ -65,10 +89,11 @@ public class RandomProbeGenerator : MonoBehaviour {
 		
 	}
 
-    public void updateSeasonLevel(sesions sesion)
+    public void updateSeasonLevel(sesions sesion, int level)
     {
-        var levelPrefab =Resources.Load<GameObject>("Levels/Level");
+        var levelPrefab = loadedLevels[sesion][level];
 
+        
         GameObject sesionObject=null;
         var spawnedLevel= Instantiate<GameObject>(levelPrefab);
 

@@ -2560,7 +2560,7 @@ GameObject:
   - component: {fileID: 5272341706314798250}
   - component: {fileID: 5272341706314798251}
   m_Layer: 0
-  m_Name: fall_1_hakanv1
+  m_Name: fall_2_hakanv1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2696,6 +2696,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35849b88a8270240b38fc8ed2661561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelNumber: 2
+  session: 2
 --- !u!1 &5272341707877692593
 GameObject:
   m_ObjectHideFlags: 0

@@ -72,7 +72,10 @@ public class GameController : MonoBehaviour {
 
         //Update reverse sesion
         var reverseSesion = geReverseSession();
-        probeGenerator.updateSeasonLevel(reverseSesion);
+
+        var hardness = (int)Mathf.Ceil((float)(level + 1) / 4.0f);
+
+        probeGenerator.updateSeasonLevel(reverseSesion,hardness);
 
         //probeGenerator.updateSeasonProbes(reverseSesion);
 

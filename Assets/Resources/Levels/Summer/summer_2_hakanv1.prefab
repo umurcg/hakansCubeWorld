@@ -3773,7 +3773,7 @@ GameObject:
   - component: {fileID: 8618565948001755051}
   - component: {fileID: 993903515512761662}
   m_Layer: 0
-  m_Name: summer_3_hakanv1
+  m_Name: summer_2_hakanv1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3906,6 +3906,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35849b88a8270240b38fc8ed2661561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelNumber: 2
+  session: 1
 --- !u!1 &8908590302407397989
 GameObject:
   m_ObjectHideFlags: 0
