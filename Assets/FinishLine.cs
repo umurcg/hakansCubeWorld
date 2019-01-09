@@ -10,11 +10,14 @@ public class FinishLine : MonoBehaviour {
     public GameObject descentObject;
     public GameController gameController;
     public Collider reverseObstacle;
+    public GameObject doorObject;
 
     MeshRenderer rend;
     Collider coll;
 
     public int wallPower = 0;
+
+
     
 
 	// Use this for initializationri
