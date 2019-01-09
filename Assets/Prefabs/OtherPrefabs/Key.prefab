@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3534949586687920201}
   - component: {fileID: 1604727980927898323}
   - component: {fileID: 798705315939222620}
+  - component: {fileID: 9005956417587729678}
   m_Layer: 0
   m_Name: Key
   m_TagString: Untagged
@@ -28,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798705315939222619}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.324505, y: 50.85, z: -7.8}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -41,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798705315939222619}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 7eda40a0c7802d0478c578e9864442bc, type: 3}
 --- !u!23 &3534949586687920201
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -59,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 211e21d06747a584e8efc6c903fa72d1, type: 2}
+  - {fileID: 2100000, guid: 5fd6019436b56e34592737f5bc8df0c0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -90,8 +91,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.96
+  m_Center: {x: 0, y: 2.25, z: 0}
 --- !u!114 &798705315939222620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,3 +106,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finishLine: {fileID: 0}
+--- !u!114 &9005956417587729678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798705315939222619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63845f30c77877c40b0ef230601127e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 100

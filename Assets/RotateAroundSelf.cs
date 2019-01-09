@@ -15,7 +15,7 @@ public class RotateAroundSelf : MonoBehaviour
 
         if (Input.GetMouseButton(0)) return;
 
-        transform.RotateAround(transform.position, Vector3.right, Time.deltaTime * speed);
+        transform.RotateAround(transform.position, Vector3.forward, Time.deltaTime * speed);
 
     }
 }

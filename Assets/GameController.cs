@@ -30,6 +30,7 @@ public class GameController : MonoBehaviour {
     public RandomProbeGenerator.sesions currentSesion = RandomProbeGenerator.sesions.spring;
 
     public InGameUIController uiController;
+    public LeaderBoardController leaderBoard;
 
     public float fallAngle = 45f;
 
@@ -105,11 +106,16 @@ public class GameController : MonoBehaviour {
 
     public void lost()
     {
+        leaderBoard.openUserNameInput();
+        soundController.createSoundEffect(gameOverSound);
+
+    }
+
+    public void openEndUI()
+    {
         menu.gameObject.SetActive(true);
         menu.restartButton.SetActive(true);
         menu.continueButton.SetActive(false);
-        soundController.createSoundEffect(gameOverSound);
-
     }
 
     public RandomProbeGenerator.sesions geReverseSession()
