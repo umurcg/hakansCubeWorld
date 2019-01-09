@@ -54,7 +54,7 @@ public class FinishLine : MonoBehaviour {
         coll.isTrigger = true;
 
         if (doorObject != null)
-            StartCoroutine(_fadeObjectOut(doorObject, 1f, true));
+            StartCoroutine(_fadeObjectOut(doorObject, 0.5f, true));
     }
 
     public void buildWall(int numberOfKey)
