@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finishLine: {fileID: 0}
+  breakEffect: {fileID: 8300000, guid: 6b98d831b27246044bb3c4c6cf9b03c0, type: 3}
 --- !u!114 &9005956417587729678
 MonoBehaviour:
   m_ObjectHideFlags: 0

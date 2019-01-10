@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
   
 
         //If character is in ground 
-        if (isGrounded)
+        if (isGrounded && _jumpVelocity<=0)
         {                    
             if (ver != 0 || hor != 0)
                 anim.SetBool("Walking", true);

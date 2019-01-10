@@ -6,10 +6,14 @@ public class WallBreaker : MonoBehaviour
 {
 
     public FinishLine finishLine;
+    public AudioClip breakEffect;
+    SoundController soundController;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        soundController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().soundController;
 
     }
 
@@ -25,7 +29,8 @@ public class WallBreaker : MonoBehaviour
         {
             finishLine.damageWall();
             Destroy(gameObject);
-            
+
+            soundController.createSoundEffect(breakEffect);
             
         }
     }
