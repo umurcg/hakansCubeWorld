@@ -52,7 +52,16 @@ public class GameController : MonoBehaviour {
             Time.timeScale = 0;   
         }
 
-	}
+
+        if (Debug.isDebugBuild && Input.GetKeyDown(KeyCode.L))
+        {
+
+            nextSesion();
+        }
+
+    }
+
+    
 
     public void nextSesion()
     {
@@ -73,7 +82,8 @@ public class GameController : MonoBehaviour {
         //Update reverse sesion
         var reverseSesion = geReverseSession();
 
-        var hardness = (int)Mathf.Ceil((float)(level + 1) / 4.0f);
+        var hardness = (int)Mathf.Ceil((float)(level + 4) / 4.0f);
+        
 
         probeGenerator.updateSeasonLevel(reverseSesion,hardness);
 

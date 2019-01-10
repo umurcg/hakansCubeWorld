@@ -12,12 +12,16 @@ public class CubeController : MonoBehaviour {
 
     private void Awake()
     {
-        timerRotateLimit = gameController.fallAngle;
+        if(gameController!=null)
+            timerRotateLimit = gameController.fallAngle;
     }
 
     // Update is called once per frame
     void Update () {
         transform.RotateAround(transform.position, Vector3.forward, rotateSpeed * Time.deltaTime);
+
+        if (gameController == null)
+            return;
 
         //Get session timer for setting timer with rotation left
         var currenSesionCube = gameController.getCurrentSesionCube();
@@ -25,8 +29,12 @@ public class CubeController : MonoBehaviour {
 
         //Calculate time left from rotattion
         var angle=Vector3.Angle(currenSesionCube.transform.right, Vector3.right);
-        curretTimer.setTimers((timerRotateLimit - angle) / timerRotateLimit);
-        
+        var time = (timerRotateLimit - angle) / timerRotateLimit;
+        curretTimer.setTimers(time);
+
+        if(time>0)
+            gameController.uiController.setTimer(time);
+
     }
 
     //StartCoroutine(lerpRotation(Quaternion.(0, 0, 90), 1f));

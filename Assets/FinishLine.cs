@@ -78,7 +78,8 @@ public class FinishLine : MonoBehaviour {
             Renderer doorRend = doorObject.GetComponent<Renderer>();
             StandardShaderUtils.ChangeRenderMode(doorRend.material, StandardShaderUtils.BlendMode.Opaque);
             Color textureColor = doorRend.material.color;
-            float a = textureColor.a;
+            textureColor.a = 1;
+            doorRend.material.color = textureColor;
         }
 
     }

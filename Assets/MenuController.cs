@@ -9,7 +9,7 @@ public class MenuController : MonoBehaviour {
     public GameObject continueButton;
 
     public void restart() {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void mainMenu()

@@ -65,6 +65,8 @@ public class PlayerController : MonoBehaviour
 
 
         walkVector += forwardDirection * hor + Vector3.forward * ver;
+        if(walkVector.magnitude>1)
+            walkVector =walkVector.normalized;
         walkVector *= moveSpeed;              
             
         transform.LookAt(transform.position + walkVector, upwardDirection);

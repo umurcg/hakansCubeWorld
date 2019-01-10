@@ -102,7 +102,7 @@ public class PowerObjectGenerator : MonoBehaviour {
 
         spawnedObject.GetComponent<SlowerPowerDown>().gameController = gameController;
 
-        print("spawned power object");
+        
 
         return;
 

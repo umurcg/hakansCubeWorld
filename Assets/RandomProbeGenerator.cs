@@ -52,14 +52,14 @@ public class RandomProbeGenerator : MonoBehaviour {
         }
 
         var allLevels = Resources.LoadAll<GameObject>("Levels");
-        print(allLevels.Length);
+        
         foreach (var level in allLevels)
         {
-            print("hey");
+        
             LevelSurface levelSurf = level.GetComponent<LevelSurface>();                        
             loadedLevels[levelSurf.session][levelSurf.levelNumber] = level;
-            print(levelSurf.session);
-            print(levelSurf.levelNumber);
+        
+        
         }
         
     }
@@ -86,11 +86,20 @@ public class RandomProbeGenerator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+            
 		
 	}
 
     public void updateSeasonLevel(sesions sesion, int level)
     {
+
+        if (level > 3)
+        {
+            level = level % 3;
+            if (level == 0)
+                level = 3;
+        }
         var levelPrefab = loadedLevels[sesion][level];
 
         

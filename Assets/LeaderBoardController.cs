@@ -71,6 +71,9 @@ public class LeaderBoardController : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+
+        
+
         foreach(var score in _userRecors)
         {
             var element = Instantiate<GameObject>(leaderBoardElementPrefab);
@@ -78,6 +81,8 @@ public class LeaderBoardController : MonoBehaviour
 
             var elementText = element.GetComponent<Text>();
             elementText.text = score.userName + "  ---  " + score.level.ToString();
+
+            
 
         }
 
