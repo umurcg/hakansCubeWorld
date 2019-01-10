@@ -2367,7 +2367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35849b88a8270240b38fc8ed2661561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelNumber: 1
+  levelNumber: 3
   session: 2
 --- !u!1 &6720363470389168716
 GameObject:
@@ -3293,11 +3293,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6878673443635827295}
     m_Modifications:
-    - target: {fileID: 798705315939222619, guid: 28a1bac66879edf4ba55a3174bf8c04e,
-        type: 3}
-      propertyPath: m_Name
-      value: Key (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 4659270216163510116, guid: 28a1bac66879edf4ba55a3174bf8c04e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3352,6 +3347,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 798705315939222619, guid: 28a1bac66879edf4ba55a3174bf8c04e,
+        type: 3}
+      propertyPath: m_Name
+      value: Key (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28a1bac66879edf4ba55a3174bf8c04e, type: 3}
